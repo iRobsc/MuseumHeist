@@ -56,6 +56,7 @@ public class Movement : MonoBehaviour
         bool shift_down = Input.GetKey(KeyCode.LeftShift);
         playerNoiseAndVisibility.noise = this.visibility_step_volume 
                 * (shift_down ? visibility_step_sneak_multiplier : 1.0f);
+        playerNoiseAndVisibility.noise *= ((float)(velocity.magnitude) > 0.001f) ? 1.0f : 0.0f;
         
         // visibility
         float lightsum = 0.0f;
@@ -95,7 +96,7 @@ public class Movement : MonoBehaviour
         playerNoiseAndVisibility.visibility =
                 visibility_illumination_offset +
                 visibility_illumination_multiplier * lightsum;
-        print(playerNoiseAndVisibility.visibility);
+        print(playerNoiseAndVisibility.noise);
     }
 
     // Update is called once per frame
