@@ -63,9 +63,9 @@ public class Guard : MonoBehaviour
         } 
         else if (!detected && affectedByGroup.activeSelf) 
         {
-            LayerMask playerLayer = LayerMask.GetMask("Collidables");
+            LayerMask playerLayer = LayerMask.GetMask("Player");
             RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(-angleX, -angleY), 10, playerLayer);
-            if (hit.transform != null && hit.transform.name == "Player Object (Terry the thief)")
+            if (hit.transform != null && hit.transform.gameObject == player_collider.gameObject)
                 detected = true;
         }
         
