@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 422926577767653504}
   - component: {fileID: 1716857550718156085}
   - component: {fileID: 730212471}
-  - component: {fileID: 4290613334255280498}
+  - component: {fileID: 8394185170451370003}
   m_Layer: 0
   m_Name: guard
   m_TagString: Untagged
@@ -152,7 +152,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.15333334, y: 0.36333334}
   m_EdgeRadius: 0
---- !u!114 &4290613334255280498
+--- !u!114 &8394185170451370003
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -165,13 +165,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player_collider: {fileID: 0}
-  waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  affectedByGroup: {fileID: 0}
-  speed: 0.01
-  next_scene: basicMovement
+  waypointsObject: {fileID: 0}
+  roomLights: {fileID: 0}
+  speed: 0
+  next_scene: 
   detected: 0

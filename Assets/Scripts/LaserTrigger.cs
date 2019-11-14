@@ -7,7 +7,7 @@ public class LaserTrigger : MonoBehaviour
 
     /* public stuff */
     public GameObject alarm_light_group;
-    public Guard[] guards;
+    public Transform guards;
 
     /* private stuff */
 
@@ -18,8 +18,8 @@ public class LaserTrigger : MonoBehaviour
             child.gameObject.GetComponent<AlarmLight>().enable();
         }
         
-        foreach (Guard guard in guards) {
-            guard.detected = true;
+        foreach (Transform guard in guards) {
+            guard.gameObject.GetComponent<Guard>().detected = true;
         }
     }
     

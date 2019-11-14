@@ -7,14 +7,15 @@ using UnityEngine.SceneManagement;
 public class Guard : MonoBehaviour
 {
     public Collider2D player_collider;
-    public GameObject[] waypoints;
-    public GameObject affectedByGroup;
+    public Transform waypointsObject;
+    public GameObject roomLights;
     public float speed;
     public string next_scene;
     public bool detected;
     private GameObject playerObject;
     
     private GameObject target;
+    private GameObject[] waypoints;
     private int waypointIndex;
     
 
@@ -25,6 +26,13 @@ public class Guard : MonoBehaviour
         playerObject = player_collider.gameObject;
         detected = false;
         target = playerObject;
+
+        int waypointAmount = waypointsObject.childCount;
+        waypoints = new GameObject[waypointAmount];
+        for (int i = 0; i < waypointAmount; i++)
+        {
+            waypoints[i] = waypointsObject.GetChild(i).gameObject;
+        }
     }
 
     /*
@@ -43,7 +51,7 @@ public class Guard : MonoBehaviour
         if (detected)
         {
             target = playerObject;
-            speed = 0.02f;
+            speed = 0.05f;
         }
         else
             target = waypoints[waypointIndex];
@@ -61,7 +69,7 @@ public class Guard : MonoBehaviour
                 waypointIndex = 0;
             target = waypoints[waypointIndex];
         } 
-        else if (!detected && affectedByGroup.activeSelf) 
+        else if (!detected && roomLights.activeSelf) 
         {
             LayerMask playerLayer = LayerMask.GetMask("Collidables");
             RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(-angleX, -angleY), 10, playerLayer);

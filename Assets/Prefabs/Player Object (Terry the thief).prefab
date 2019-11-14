@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6697989566736663899}
   - component: {fileID: 6697989566736663898}
   - component: {fileID: 6697989566736663900}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Player Object (Terry the thief)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,10 +100,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29cb738f44f94e34cbea27440077c03a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration_coefficient: 0.4
-  drag_coefficient: 0.08
-  max_velocity: 5
-  shift_multiplier: 0.3
+  movement_acceleration_coefficient: 0
+  movement_drag_coefficient: 0
+  movement_max_velocity: 0
+  movement_shift_multiplier: 0
+  visibility_step_volume: 0
+  visibility_step_sneak_multiplier: 0
+  visibility_illumination_multiplier: 0
+  visibility_illumination_offset: 0
+  visibility_illumination_falloff: 2
+  visibility_static_lights: {fileID: 0}
 --- !u!114 &6697989566736663897
 MonoBehaviour:
   m_ObjectHideFlags: 0
