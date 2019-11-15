@@ -76,13 +76,13 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2888264739762522336, guid: 7956bbbc1a69c0848bc6c629bf05c08c,
+  m_Sprite: {fileID: -6345743971097198360, guid: 93efd353896a6db4db87b1cbea6481e6,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.32, y: 0.32}
+  m_Size: {x: 0.3, y: 0.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -100,10 +100,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29cb738f44f94e34cbea27440077c03a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration_coefficient: 0.4
-  drag_coefficient: 0.08
-  max_velocity: 5
-  shift_multiplier: 0.3
+  movement_acceleration_coefficient: 0
+  movement_drag_coefficient: 0
+  movement_max_velocity: 0
+  movement_shift_multiplier: 0
+  visibility_step_volume: 0
+  visibility_step_sneak_multiplier: 0
+  visibility_illumination_multiplier: 0
+  visibility_illumination_offset: 0
+  visibility_illumination_falloff: 2
+  visibility_static_lights: {fileID: 0}
 --- !u!114 &6697989566736663897
 MonoBehaviour:
   m_ObjectHideFlags: 0
