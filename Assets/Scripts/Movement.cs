@@ -88,17 +88,25 @@ public class Movement : MonoBehaviour
         Vector2 dir = transform.position - parent.position;
         float player_radius = player_collider.radius;
         float radius_offset = player_radius + 0.01f; // offset player radius
-        RaycastHit2D hit = Physics2D.Raycast(parent.position, dir, distance - (radius_offset)); 
-        if (hit == null) {
+        //RaycastHit2D hit = Physics2D.Raycast(parent.position, dir, distance - (radius_offset)); 
+        RaycastHit2D[] hits = Physics2D.RaycastAll(parent.position, dir, distance - (radius_offset)); 
+        if (hits.Length == 0) {
             lightsum += luminance / falloff_denom; // inverse square fall-off
         } else {
-            VisibilityOccluder visibility_occluder = hit.collider.gameObject.GetComponent<VisibilityOccluder>();
-            bool hit_visibility_occluder = visibility_occluder != null;
+            bool hit_visibility_occluder = false;
+            
+            foreach(RaycastHit2D hit in hits) {
+                VisibilityOccluder visibility_occluder = hit.collider.gameObject.GetComponent<VisibilityOccluder>();
+                hit_visibility_occluder = visibility_occluder != null;
+                if (hit_visibility_occluder) {
+                    float occlusion_multiplier = 1.0f - visibility_occluder.obstacle_multiplicative_alpha;
+                    lightsum += (luminance / falloff_denom) * occlusion_multiplier;
+                    break;
+                }
+            }
+
             if (!hit_visibility_occluder) {
-                lightsum += luminance / falloff_denom; // inverse square fall-off
-            } else {
-                float occlusion_multiplier = 1.0f - visibility_occluder.obstacle_multiplicative_alpha;
-                lightsum += (luminance / falloff_denom) * occlusion_multiplier;
+                lightsum += luminance / falloff_denom;
             }
         }
 
@@ -122,7 +130,7 @@ public class Movement : MonoBehaviour
         playerNoiseAndVisibility.visibility =
                 visibility_illumination_offset +
                 visibility_illumination_multiplier * lightsum;
-        //print(playerNoiseAndVisibility.visibility);
+        print(playerNoiseAndVisibility.visibility);
     }
 
     // Update is called once per frame

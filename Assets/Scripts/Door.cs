@@ -39,18 +39,15 @@ public class Door : MonoBehaviour
 
     public void try_open_door() {
         if (!is_blocked()) {
-            print("opening door");
             is_open = true;
             transform.GetChild(0).RotateAround(transform.position, Vector3.forward, -80.0f);
             textPrompt.GetComponent<Text>().enabled = false;
         } else {
-            print("door blocked");
             textPrompt.GetComponent<Text>().text = "Door is blocked";
         }
     }
 
     public void close_door() {
-        print("closing door");
         if(is_open) {
             is_open = false;
             transform.GetChild(0).RotateAround(transform.position, Vector3.forward, 80.0f);
@@ -60,8 +57,6 @@ public class Door : MonoBehaviour
     private int c = 0;
     void OnTriggerEnter2D(Collider2D collider)
     {
-        print(collider.name);
-
         if (is_open)
             return;
 
