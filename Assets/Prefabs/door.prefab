@@ -253,6 +253,7 @@ GameObject:
   - component: {fileID: 6170134559320819238}
   - component: {fileID: 6170134559320819242}
   - component: {fileID: 6170134559320819243}
+  - component: {fileID: 1170076394}
   m_Layer: 0
   m_Name: doorbody
   m_TagString: Untagged
@@ -418,3 +419,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   is_blocking: 0
   blocking_group: {fileID: 0}
+--- !u!114 &1170076394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6170134559320819232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d408b3712d2872446b863123e86a0d5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstacle_multiplicative_alpha: 0
+  obstacle_additive_alpha: 0
