@@ -66,9 +66,7 @@ public class Guard : MonoBehaviour
         if (collider != player_collider)
             return;
         SceneManager.LoadScene(next_scene);
-    }
-
-    
+    }    
 
     // Update is called once per frame
     void Update()
@@ -98,7 +96,6 @@ public class Guard : MonoBehaviour
                 print(hit.collider);
                 detected = true;
             }
-                
         }
         
         Vector2 walkDirection = direction(transform.position, target.transform.position);
