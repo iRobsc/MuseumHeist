@@ -10,6 +10,7 @@ public class Guard : MonoBehaviour
     public Transform waypointsObject;
     public GameObject roomLights;
     public float speed;
+    public float sightRange;
     public string next_scene;
     public bool detected;
     private GameObject playerObject;
@@ -26,6 +27,8 @@ public class Guard : MonoBehaviour
         playerObject = player_collider.gameObject;
         detected = false;
         target = playerObject;
+        if (sightRange == 0)
+            sightRange = 10;
 
         int waypointAmount = waypointsObject.childCount;
         waypoints = new GameObject[waypointAmount];
@@ -40,6 +43,21 @@ public class Guard : MonoBehaviour
         print(this + " notified of noise at " + position);
     }
 
+    private double distance(Vector2 from, Vector2 to) {
+        float deltaX = from.x - to.x;
+        float deltaY = from.y - to.y;
+        return Math.Sqrt(Math.Pow(deltaX, 2) + Math.Pow(deltaY, 2));
+    }
+
+    private Vector2 direction(Vector2 from, Vector2 to) {
+        float deltaX = from.x - to.x;
+        float deltaY = from.y - to.y;
+        float angleX = (float)Math.Cos(Math.Atan2(deltaY, deltaX));
+        float angleY = (float)Math.Sin(Math.Atan2(deltaY, deltaX));
+
+        return new Vector2(angleX, angleY);
+    }
+
     /*
      * Switch to next scene if level is completed
      */
@@ -49,6 +67,8 @@ public class Guard : MonoBehaviour
             return;
         SceneManager.LoadScene(next_scene);
     }
+
+    
 
     // Update is called once per frame
     void Update()
@@ -61,13 +81,7 @@ public class Guard : MonoBehaviour
         else
             target = waypoints[waypointIndex];
 
-        
-        float deltaX = transform.position.x - target.transform.position.x;
-        float deltaY = transform.position.y - target.transform.position.y;
-        float angleX = (float)Math.Cos(Math.Atan2(deltaY, deltaX));
-        float angleY = (float)Math.Sin(Math.Atan2(deltaY, deltaX));
-
-        if (target == waypoints[waypointIndex] && Math.Abs(deltaY) < 1 && Math.Abs(deltaX) < 1)
+        if (target == waypoints[waypointIndex] && distance(transform.position, target.transform.position) < 1)
         {
             waypointIndex ++;
             if (waypointIndex == waypoints.Length)
@@ -76,14 +90,20 @@ public class Guard : MonoBehaviour
         } 
         else if (!detected && roomLights.activeSelf) 
         {
-            LayerMask playerLayer = LayerMask.GetMask("Collidables");
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(-angleX, -angleY), 10, playerLayer);
-            if (hit.transform != null && hit.transform.name == "Player Object (Terry the thief)")
+            Vector2 sightDirection = direction(transform.position, playerObject.transform.position);
+            LayerMask collidables = LayerMask.GetMask("Collidables");
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, -sightDirection, sightRange, collidables);
+            if (hit.transform == null && distance(transform.position, playerObject.transform.position) <= sightRange)
+            {
+                print(hit.collider);
                 detected = true;
+            }
+                
         }
         
-        float posX = transform.position.x - speed * angleX;
-        float posY = transform.position.y - speed * angleY;
+        Vector2 walkDirection = direction(transform.position, target.transform.position);
+        float posX = transform.position.x - speed * walkDirection.x;
+        float posY = transform.position.y - speed * walkDirection.y;
         transform.position = new Vector3(posX, posY, 0);
     }
 }
