@@ -33,6 +33,7 @@ public class InteractionTrigger : MonoBehaviour
     {
         if (player_near && Input.GetKey(KeyCode.F)) {
             group_to_affect.SetActive(action_enable);
+            print("Activated!");
         }
     }
 }

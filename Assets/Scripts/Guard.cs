@@ -35,6 +35,11 @@ public class Guard : MonoBehaviour
         }
     }
 
+    public void notify_of_noise(Vector2 position, float sound_level) {
+        // TODO react to noise if close and loud enough  
+        print(this + " notified of noise at " + position);
+    }
+
     /*
      * Switch to next scene if level is completed
      */
