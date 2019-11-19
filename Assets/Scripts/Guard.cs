@@ -18,6 +18,8 @@ public class Guard : MonoBehaviour
     private GameObject target;
     private GameObject[] waypoints;
     private int waypointIndex;
+
+    private Animator animator;
     
 
     // Start is called before the first frame update
@@ -36,6 +38,9 @@ public class Guard : MonoBehaviour
         {
             waypoints[i] = waypointsObject.GetChild(i).gameObject;
         }
+
+        animator = this.GetComponent<Animator>();
+
     }
 
     public void notify_of_noise(Vector2 position, float sound_level) {
@@ -101,6 +106,57 @@ public class Guard : MonoBehaviour
         Vector2 walkDirection = direction(transform.position, target.transform.position);
         float posX = transform.position.x - speed * walkDirection.x;
         float posY = transform.position.y - speed * walkDirection.y;
+
+        /*float x = target.transform.position.x - transform.position.x;
+        float y = target.transform.position.y - transform.position.y;
+
+        float posX = transform.position.x - speed * angleX;
+        float posY = transform.position.y - speed * angleY;*/ 
+
         transform.position = new Vector3(posX, posY, 0);
+
+        float currX = transform.position.x;
+        float currY = transform.position.y;
+
+        float targetX = target.transform.position.x;
+        float targetY = target.transform.position.y;
+
+        if (Mathf.Abs(targetX - currX) < 1.0f)
+        {
+            Debug.Log("EUREKA");
+            Debug.Log(Mathf.Abs(targetX - currX));
+            if (currY < targetY)
+            {
+                Debug.Log("UP, UP, UP");
+                animator.SetBool("downwards", false);
+                animator.SetBool("left", false);
+                animator.SetBool("right", false);
+                animator.SetBool("upwards", true);
+            }
+            else
+            {
+                Debug.Log("DOWN, DOWN, DOWN");
+                animator.SetBool("upwards", false);
+                animator.SetBool("left", false);
+                animator.SetBool("right", false);
+                animator.SetBool("downwards", true);
+            }
+        }
+        else {
+            if (currX < targetX)
+            {
+                animator.SetBool("upwards", false);
+                animator.SetBool("downwards", false);
+                animator.SetBool("left", false);
+                animator.SetBool("right", true);
+            }
+            else
+            {
+                animator.SetBool("upwards", false);
+                animator.SetBool("downwards", false);
+                animator.SetBool("right", false);
+                animator.SetBool("left", true);
+            }
+        }                
     }
 }
