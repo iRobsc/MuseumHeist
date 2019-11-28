@@ -19,7 +19,7 @@ public class Pathfinding : MonoBehaviour
     void Update()
     {
         List<Object> openNodes = new List<Object>();
-        HashSet<PathNode> closedNodes = new HashSet<PathNode>();
+        List<Object> closedNodes = new List<Object>();
 
         PathNode startingNode = new PathNode(0, 0);
         PathNode targetNode = new PathNode(10, 10);
@@ -60,8 +60,8 @@ public class Pathfinding : MonoBehaviour
             }
 
             Debug.Log("3- removing and adding");
-            openNodes.Remove(currentNode);
             closedNodes.Add(currentNode);
+            openNodes.Remove(currentNode);
             Debug.Log("LIST PROPS: " + openNodes.Count + " " + closedNodes.Count);
 
             Debug.Log("4- Getting Neighbors");
@@ -71,10 +71,11 @@ public class Pathfinding : MonoBehaviour
             {
                 PathNode neighbor = (PathNode) neighbors[i];
                 Debug.Log("4.1- for each neighbor");
-                /*if (tilemap.HasTile(new Vector3Int(neighbor.x, neighbor.y, 0)) || closedNodes.Contains(neighbor))
+                if (ListContainsPathNode(closedNodes, neighbor))
+                //if (tilemap.HasTile(new Vector3Int(neighbor.x, neighbor.y, 0)) || closedNodes.Contains(neighbor))
                 {
                     continue;
-                }*/
+                }
 
                 int newMovementCostToNeighbor = currentNode.g_cost + currentNode.GetDistanceTo(neighbor);
                 if (newMovementCostToNeighbor < neighbor.g_cost || !ListContainsPathNode(openNodes, neighbor))
@@ -115,10 +116,6 @@ public class Pathfinding : MonoBehaviour
 
                 int checkX = node.x + i;
                 int checkY = node.y + j;
-                Debug.Log(checkX);
-                Debug.Log(checkY);
-                Debug.Log("------------------------------");
-                Debug.Log(checkX > 0 && checkX < size.x && checkY > 0 && checkY < size.y);
 
                 if (checkX > 0  && checkX < size.x && checkY > 0 && checkY < size.y)
                 {
@@ -142,7 +139,6 @@ public class Pathfinding : MonoBehaviour
         }
 
         path.Add(currentNode);
-        currentNode = currentNode.parent;
 
         path.Reverse();
 
