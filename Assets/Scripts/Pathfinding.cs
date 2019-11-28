@@ -13,7 +13,6 @@ public class Pathfinding : MonoBehaviour
 
     void Awake()
     {
-        bounds = tilemap.cellBounds;
         size = tilemap.size;
     }
 
@@ -78,16 +77,18 @@ public class Pathfinding : MonoBehaviour
                 }*/
 
                 int newMovementCostToNeighbor = currentNode.g_cost + currentNode.GetDistanceTo(neighbor);
-                if (newMovementCostToNeighbor < neighbor.g_cost || !openNodes.Contains(neighbor))
+                if (newMovementCostToNeighbor < neighbor.g_cost || !ListContainsPathNode(openNodes, neighbor))
                 {
                     Debug.Log("4.2- comparing G_Cost");
                     neighbor.g_cost = newMovementCostToNeighbor;
                     neighbor.h_cost = neighbor.GetDistanceTo(targetNode);
                     neighbor.parent = currentNode;
                     
-                    if (!openNodes.Contains(neighbor)) {
+                    if (!ListContainsPathNode(openNodes, neighbor)) 
+                    {
                         Debug.Log("4.3- adding neighbor to openNodes");
-                        //openNodes.Add(neighbor); //<-- WTF!?!!?!?!?!?
+                        openNodes.Add(neighbor);
+                        Debug.Log("LIST PROPS: " + openNodes.Count + " " + closedNodes.Count);
                     }
                 }
 
@@ -114,8 +115,12 @@ public class Pathfinding : MonoBehaviour
 
                 int checkX = node.x + i;
                 int checkY = node.y + j;
+                Debug.Log(checkX);
+                Debug.Log(checkY);
+                Debug.Log("------------------------------");
+                Debug.Log(checkX > 0 && checkX < size.x && checkY > 0 && checkY < size.y);
 
-                if (checkX > bounds.x && checkX < size.x && checkY > bounds.y && checkY < size.y)
+                if (checkX > 0  && checkX < size.x && checkY > 0 && checkY < size.y)
                 {
                     PathNode neighbor = new PathNode(checkX, checkY);
                     neighbors.Add(neighbor);
@@ -150,6 +155,15 @@ public class Pathfinding : MonoBehaviour
             Debug.Log("WAYPOINT " + waypoint.ToString());
         }
     
+    }
+
+    bool ListContainsPathNode(List<Object> list, PathNode node) {
+        foreach (PathNode pathnode in list) {
+            if (pathnode.x == node.x && pathnode.y == node.y) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
