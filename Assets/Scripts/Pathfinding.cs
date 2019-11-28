@@ -18,59 +18,67 @@ public class Pathfinding : MonoBehaviour
 
     void Update()
     {
-        List<Object> openNodes = new List<Object>();
-        List<Object> closedNodes = new List<Object>();
+        LinkedList<Object> openNodes = new LinkedList<Object>();
+        LinkedList<Object> closedNodes = new LinkedList<Object>();
 
         PathNode startingNode = new PathNode(0, 0);
         PathNode targetNode = new PathNode(10, 10);
 
-        Debug.Log("STARTING NODE " + startingNode);
-        Debug.Log("TARGET NODE " + targetNode);
-        Debug.Log(startingNode.x == targetNode.x && startingNode.y == targetNode.y);
+        //Debug.Log("STARTING NODE " + startingNode);
+        //Debug.Log("TARGET NODE " + targetNode);
+        //Debug.Log(startingNode.x == targetNode.x && startingNode.y == targetNode.y);
 
-        openNodes.Add(startingNode);
+        openNodes.AddLast(startingNode);
 
         List<Object> neighbors;
 
         while (openNodes.Count > 0)
         {
-            Debug.Log("1- Houston, We're In!!");
-            PathNode currentNode = (PathNode) openNodes[0];
+            //Debug.Log("1- Houston, We're In!!");
+            PathNode currentNode = (PathNode) openNodes.First.Value;
 
-            Debug.Log("CURRENT NODE " + currentNode);
-            Debug.Log("TARGET NODE " + targetNode);
-            Debug.Log(currentNode.x == targetNode.x && currentNode.y == targetNode.y);
+            //Debug.Log("CURRENT NODE " + currentNode);
+            //Debug.Log("TARGET NODE " + targetNode);
+            //Debug.Log(currentNode.x == targetNode.x && currentNode.y == targetNode.y);
 
 
-            for (int i = 1; i < openNodes.Count; i++)
-            {
-                Debug.Log("2- Comparing Nodes Now");
-                PathNode newNode = (PathNode) openNodes[i];
-                if (newNode.GetFCost() < currentNode.GetFCost() || (newNode.GetFCost() == currentNode.GetFCost() && newNode.h_cost < currentNode.h_cost))
+            //for (int i = 1; i < openNodes.Count; i++)
+            //{
+            //    //Debug.Log("2- Comparing Nodes Now");
+            //    PathNode newNode = (PathNode) openNodes[i];
+            //    if (newNode.GetFCost() < currentNode.GetFCost() || (newNode.GetFCost() == currentNode.GetFCost() && newNode.h_cost < currentNode.h_cost))
+            //    {
+            //        //Debug.Log("2.1- We have a case");
+            //        currentNode = newNode;
+            //    }
+            //}
+
+            foreach (PathNode p in openNodes) {
+                if (p.GetFCost() < currentNode.GetFCost() || (p.GetFCost() == currentNode.GetFCost() && p.h_cost < currentNode.h_cost))
                 {
-                    Debug.Log("2.1- We have a case");
-                    currentNode = newNode;
-                }
+                    //Debug.Log("2.1- We have a case");
+                    currentNode = p;
+                }        
             }
 
             if (currentNode.x == targetNode.x && currentNode.y == targetNode.y)
             {
-                Debug.Log("FINAL- We got it!");
+                //Debug.Log("FINAL- We got it!");
                 return;
             }
 
-            Debug.Log("3- removing and adding");
-            closedNodes.Add(currentNode);
+            //Debug.Log("3- removing and adding");
+            closedNodes.AddLast(currentNode);
             openNodes.Remove(currentNode);
-            Debug.Log("LIST PROPS: " + openNodes.Count + " " + closedNodes.Count);
+            //Debug.Log("LIST PROPS: " + openNodes.Count + " " + closedNodes.Count);
 
-            Debug.Log("4- Getting Neighbors");
+            //Debug.Log("4- Getting Neighbors");
             neighbors = GetNeighbors(currentNode);
 
             for (int i = 0; i < neighbors.Count; i++)
             {
                 PathNode neighbor = (PathNode) neighbors[i];
-                Debug.Log("4.1- for each neighbor");
+                //Debug.Log("4.1- for each neighbor");
                 if (ListContainsPathNode(closedNodes, neighbor))
                 //if (tilemap.HasTile(new Vector3Int(neighbor.x, neighbor.y, 0)) || closedNodes.Contains(neighbor))
                 {
@@ -80,16 +88,16 @@ public class Pathfinding : MonoBehaviour
                 int newMovementCostToNeighbor = currentNode.g_cost + currentNode.GetDistanceTo(neighbor);
                 if (newMovementCostToNeighbor < neighbor.g_cost || !ListContainsPathNode(openNodes, neighbor))
                 {
-                    Debug.Log("4.2- comparing G_Cost");
+                    //Debug.Log("4.2- comparing G_Cost");
                     neighbor.g_cost = newMovementCostToNeighbor;
                     neighbor.h_cost = neighbor.GetDistanceTo(targetNode);
                     neighbor.parent = currentNode;
                     
                     if (!ListContainsPathNode(openNodes, neighbor)) 
                     {
-                        Debug.Log("4.3- adding neighbor to openNodes");
-                        openNodes.Add(neighbor);
-                        Debug.Log("LIST PROPS: " + openNodes.Count + " " + closedNodes.Count);
+                        //Debug.Log("4.3- adding neighbor to openNodes");
+                        openNodes.AddLast(neighbor);
+                        //Debug.Log("LIST PROPS: " + openNodes.Count + " " + closedNodes.Count);
                     }
                 }
 
@@ -97,7 +105,7 @@ public class Pathfinding : MonoBehaviour
 
         }
 
-        Debug.Log("5- retracing path");
+        //Debug.Log("5- retracing path");
         RetracePath(targetNode, startingNode);
     }
 
@@ -148,12 +156,12 @@ public class Pathfinding : MonoBehaviour
 
         foreach (PathNode waypoint in path)
         {
-            Debug.Log("WAYPOINT " + waypoint.ToString());
+            //Debug.Log("WAYPOINT " + waypoint.ToString());
         }
     
     }
 
-    bool ListContainsPathNode(List<Object> list, PathNode node) {
+    bool ListContainsPathNode(LinkedList<Object> list, PathNode node) {
         foreach (PathNode pathnode in list) {
             if (pathnode.x == node.x && pathnode.y == node.y) {
                 return true;
