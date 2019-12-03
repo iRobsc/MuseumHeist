@@ -11,7 +11,7 @@ public class PathNode : Object
     public int h_cost; //distance from end node
     public int f_cost; //g + h cost
 
-    public PathNode parent;
+    private PathNode parent;
 
     public PathNode(int x, int y)
     {
@@ -26,10 +26,11 @@ public class PathNode : Object
     {
         return "Position: [" + this.x + ", " + this.y + "]\n\t" +
             "Costs: [G(" + g_cost + "), H(" + h_cost + "), F(" + GetFCost() + ")]\n\t" +
-            "Parent: [" + parent.x + ", " + parent.y + "]";
+            "Parent: [" + (this.parent == null ? ("NULL") : (parent.x + ", " + parent.y)) + "]";
     }
 
-    public bool Equals(PathNode node) {
+    public bool Equals(PathNode node)
+    {
         return (this.x == node.x) && (this.y == node.y);
     }
 
@@ -50,8 +51,18 @@ public class PathNode : Object
         }
         else
         {
-            return 14 * distX + 10 * (distY - distY);
+            return 14 * distX + 10 * (distY - distX);
         }
+    }
+
+    public void SetParent(PathNode parent)
+    {
+        this.parent = parent;
+    }
+
+    public PathNode GetParent()
+    {
+        return this.parent;
     }
 
     public bool isDiagonalTo(PathNode to)
@@ -64,12 +75,14 @@ public class PathNode : Object
 
     }
 
-    public bool IsInList(List<PathNode> list) {
+    public bool IsInList(List<PathNode> list)
+    {
 
         for (int i = 0; i < list.Count; i++)
         {
             PathNode current = list[i];
-            if (current.x == this.x && current.y == this.y) {
+            if (current.x == this.x && current.y == this.y && current.parent == this.parent)
+            {
                 return true;
             }
         }

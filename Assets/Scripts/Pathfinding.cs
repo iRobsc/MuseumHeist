@@ -89,13 +89,13 @@ public class Pathfinding : MonoBehaviour
                     //Debug.Log("4.2- comparing G_Cost");
                     neighbor.g_cost = newMovementCostToNeighbor;
                     neighbor.h_cost = neighbor.GetDistanceTo(targetNode);
-                    neighbor.parent = currentNode;
+                    neighbor.SetParent(currentNode);
 
                     if (!ListContainsPathNode(openNodes, neighbor))
                     {
                         //Debug.Log("4.3- adding neighbor to openNodes");
                         openNodes.Add(neighbor);
-                        Debug.Log("parent: " + neighbor.parent);
+                        Debug.Log("parent: " + neighbor.GetParent());
                         //Debug.Log("LIST PROPS: " + openNodes.Count + " " + closedNodes.Count);
                     }
 
@@ -145,7 +145,7 @@ public class Pathfinding : MonoBehaviour
 
         while (currentNode.x != from.x && currentNode.y != from.y) {
             //path.Add(currentNode);
-            currentNode = currentNode.parent;
+            currentNode = currentNode.GetParent();
         }
 
         Debug.Log("Hello?");

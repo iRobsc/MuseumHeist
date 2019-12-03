@@ -6,8 +6,11 @@ using UnityEngine.Tilemaps;
 public class AStar : MonoBehaviour
 {
 
-    //public PathNode startingNode;
-    //public PathNode targetNode;
+    PathNode startingNode;
+    PathNode targetNode;
+
+    List<PathNode> openNodes;
+    List<PathNode> closedNodes;
 
     public Tilemap tilemap;
 
@@ -18,22 +21,25 @@ public class AStar : MonoBehaviour
         size = tilemap.size;
     }
 
-    private void Update()
+    public void Update()
     {
-        FindPath(new PathNode(0, 0), new PathNode(5, 5));
+        startingNode = new PathNode(0, 0);
+        targetNode = new PathNode(3, 3);
+        FindPath(startingNode, targetNode);
     }
 
     public List<PathNode> FindPath(PathNode startingNode, PathNode targetNode)
     {
 
-        List<PathNode> openNodes = new List<PathNode>();
-        List<PathNode> closedNodes = new List<PathNode>();
+        openNodes = new List<PathNode>();
+        closedNodes = new List<PathNode>();
 
         openNodes.Add(startingNode);
         PathNode currentNode = openNodes[0];
-        Debug.Log("DING;DING;DING");
-        while (!targetNode.Equals(currentNode)) {
-            
+
+        while (!targetNode.Equals(currentNode))
+        {
+
             currentNode = openNodes[0];
 
             //checking openNodes and finding next current node
@@ -56,6 +62,7 @@ public class AStar : MonoBehaviour
             for (int i = 0; i < neighbours.Count; i++)
             {
                 PathNode neighbour = neighbours[i];
+
                 if (!neighbour.IsInList(closedNodes))
                 { //&& Tile is walkable
 
@@ -65,12 +72,11 @@ public class AStar : MonoBehaviour
 
                         neighbour.g_cost = newCost;
                         neighbour.h_cost = neighbour.GetDistanceTo(targetNode);
-                        neighbour.parent = currentNode;
+                        neighbour.SetParent(currentNode);
 
                         if (!neighbour.IsInList(openNodes))
                         {
                             openNodes.Add(neighbour);
-                            Debug.Log("NEIGH" + neighbour.ToString());
                         }
                     }
 
@@ -79,14 +85,11 @@ public class AStar : MonoBehaviour
 
         }
 
-        Debug.Log("DONE;DONE;DONE");
-
-        RetracePath(targetNode, startingNode);
-
-        return null;
+        return RetracePath(targetNode, startingNode);
     }
 
-    List<PathNode> GetNeighbours(PathNode node) {
+    List<PathNode> GetNeighbours(PathNode node)
+    {
 
         List<PathNode> neighbours = new List<PathNode>();
 
@@ -97,9 +100,12 @@ public class AStar : MonoBehaviour
                 int neighbourX = node.x + i;
                 int neighbourY = node.y + j;
 
-                if (neighbourX >= 0 && neighbourX < size.x && neighbourY >= 0 && neighbourY < size.y) {
+                if (neighbourX >= 0 && neighbourX < size.x && neighbourY >= 0 && neighbourY < size.y)
+                {
                     PathNode neighbour = new PathNode(neighbourX, neighbourY);
-                    neighbour.g_cost = 9999999;
+                    neighbour.g_cost = neighbour.GetDistanceTo(startingNode);
+                    neighbour.h_cost = neighbour.GetDistanceTo(targetNode);
+                    neighbour.GetFCost();
                     neighbours.Add(neighbour);
                 }
 
@@ -107,37 +113,35 @@ public class AStar : MonoBehaviour
         }
 
         return neighbours;
-    
+
     }
 
-    void RetracePath(PathNode from, PathNode to)
+    List<PathNode> RetracePath(PathNode from, PathNode to)
     {
 
         List<PathNode> path = new List<PathNode>();
-        PathNode currentNode = to;
+        PathNode currentNode = new PathNode(0, 0);
 
-        Debug.Log(to.parent);
-        Debug.Log(to.x);
-        Debug.Log(to.y);
-        Debug.Log(from.parent);
-        Debug.Log(from.x);
-        Debug.Log(from.y);
-
-        while (currentNode.x != from.x && currentNode.y != from.y)
+        for (int i = 0; i < closedNodes.Count; i++)
         {
-            Debug.Log("Hello????");
-            currentNode = currentNode.parent;
-            currentNode = from;
+            if (closedNodes[i].x == from.x && closedNodes[i].y == from.y)
+            {
+                currentNode = closedNodes[i];
+            }
         }
 
-        Debug.Log("Hello?");
-
-        path.Reverse();
+        while (!currentNode.Equals(to))
+        {
+            currentNode = currentNode.GetParent();
+            path.Add(currentNode);
+        }
 
         foreach (PathNode waypoint in path)
         {
-            Debug.Log("WAYPOINT " + waypoint.ToString());
+            Debug.Log("WAYPOINT " + waypoint);
         }
+
+        return path;
 
     }
 
