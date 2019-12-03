@@ -25,7 +25,12 @@ public class PathNode : Object
     public System.String ToString()
     {
         return "Position: [" + this.x + ", " + this.y + "]\n\t" +
-            "Costs: [G(" + g_cost + "), H(" + h_cost + "), F(" + GetFCost() + ")]";
+            "Costs: [G(" + g_cost + "), H(" + h_cost + "), F(" + GetFCost() + ")]\n\t" +
+            "Parent: [" + parent.x + ", " + parent.y + "]";
+    }
+
+    public bool Equals(PathNode node) {
+        return (this.x == node.x) && (this.y == node.y);
     }
 
     public int GetFCost()
@@ -56,6 +61,19 @@ public class PathNode : Object
         bool yChanged = !(this.y == to.y);
 
         return xChanged && yChanged;
+
+    }
+
+    public bool IsInList(List<PathNode> list) {
+
+        for (int i = 0; i < list.Count; i++)
+        {
+            PathNode current = list[i];
+            if (current.x == this.x && current.y == this.y) {
+                return true;
+            }
+        }
+        return false;
 
     }
 
