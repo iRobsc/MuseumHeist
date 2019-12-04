@@ -13,18 +13,45 @@ public class AStar : MonoBehaviour
     List<PathNode> closedNodes;
 
     public Tilemap tilemap;
+    public TileBase wallTile;
 
     private Vector3Int size;
+    private BoundsInt bounds;
 
     private void Awake()
     {
         size = tilemap.size;
+        bounds = tilemap.cellBounds;
+
+        startingNode = new PathNode(0, 0);
+        targetNode = new PathNode(6, 4);
+
+        //tilemap.SetTile(new Vector3Int(startingNode.x, startingNode.y, 0), wallTile);
+        //tilemap.SetTile(new Vector3Int(targetNode.x, targetNode.y, 0), wallTile);
+
+
+        /*for (int i = bounds.x; i < size.x; i++)
+        {
+            for (int j = bounds.y; j < size.y; j++)
+            {
+                for (int k = bounds.z; k < size.z; k++)
+                {
+                    if (tilemap.HasTile(new Vector3Int(i, j, k)))
+                    {
+                        TileBase tile = tilemap.GetTile(new Vector3Int(i, j, k));
+                        if (tile.Equals(wallTile))
+                        {
+                            //Debug.Log(i + " " + j + " " + k);
+                        }
+                    }
+                }
+            }
+        }*/
+
     }
 
     public void Update()
     {
-        startingNode = new PathNode(0, 0);
-        targetNode = new PathNode(3, 3);
         FindPath(startingNode, targetNode);
     }
 
@@ -37,9 +64,8 @@ public class AStar : MonoBehaviour
         openNodes.Add(startingNode);
         PathNode currentNode = openNodes[0];
 
-        while (!targetNode.Equals(currentNode))
+        while (!targetNode.Equals(currentNode) && openNodes.Count > 0)
         {
-
             currentNode = openNodes[0];
 
             //checking openNodes and finding next current node
@@ -51,38 +77,34 @@ public class AStar : MonoBehaviour
                     currentNode = openNode;
                 }
             }
-
+            
             //adding and removing
             openNodes.Remove(currentNode);
             closedNodes.Add(currentNode);
-
+            
             //creating neighbours
             List<PathNode> neighbours = GetNeighbours(currentNode);
-
+            
             for (int i = 0; i < neighbours.Count; i++)
             {
                 PathNode neighbour = neighbours[i];
-
+                
                 if (!neighbour.IsInList(closedNodes))
-                { //&& Tile is walkable
-
+                {                   
                     int newCost = currentNode.g_cost + currentNode.GetDistanceTo(neighbour);
                     if (newCost < neighbour.g_cost || !neighbour.IsInList(openNodes))
                     {
-
                         neighbour.g_cost = newCost;
                         neighbour.h_cost = neighbour.GetDistanceTo(targetNode);
                         neighbour.SetParent(currentNode);
-
+                        
                         if (!neighbour.IsInList(openNodes))
                         {
                             openNodes.Add(neighbour);
                         }
-                    }
-
+                    }                    
                 }
             }
-
         }
 
         return RetracePath(targetNode, startingNode);
@@ -100,15 +122,18 @@ public class AStar : MonoBehaviour
                 int neighbourX = node.x + i;
                 int neighbourY = node.y + j;
 
-                if (neighbourX >= 0 && neighbourX < size.x && neighbourY >= 0 && neighbourY < size.y)
+                TileBase tile = tilemap.GetTile(new Vector3Int(neighbourX, neighbourY, 0));
+                if (tile == null)
                 {
-                    PathNode neighbour = new PathNode(neighbourX, neighbourY);
-                    neighbour.g_cost = neighbour.GetDistanceTo(startingNode);
-                    neighbour.h_cost = neighbour.GetDistanceTo(targetNode);
-                    neighbour.GetFCost();
-                    neighbours.Add(neighbour);
+                    if (neighbourX >= bounds.x && neighbourX < size.x && neighbourY >= bounds.y && neighbourY < size.y)
+                    {
+                        PathNode neighbour = new PathNode(neighbourX, neighbourY);
+                        neighbour.g_cost = neighbour.GetDistanceTo(startingNode);
+                        neighbour.h_cost = neighbour.GetDistanceTo(targetNode);
+                        neighbour.GetFCost();
+                        neighbours.Add(neighbour);
+                    }
                 }
-
             }
         }
 
@@ -118,20 +143,23 @@ public class AStar : MonoBehaviour
 
     List<PathNode> RetracePath(PathNode from, PathNode to)
     {
-
+        Debug.Log("-14");
         List<PathNode> path = new List<PathNode>();
         PathNode currentNode = new PathNode(0, 0);
 
         for (int i = 0; i < closedNodes.Count; i++)
         {
+            Debug.Log("-15");
             if (closedNodes[i].x == from.x && closedNodes[i].y == from.y)
-            {
+            {tilemap.SetTile(new Vector3Int(closedNodes[i].x, closedNodes[i].y, 0), wallTile);
+                Debug.Log("-16");
                 currentNode = closedNodes[i];
             }
         }
 
         while (!currentNode.Equals(to))
         {
+            Debug.Log("-17");
             currentNode = currentNode.GetParent();
             path.Add(currentNode);
         }
@@ -139,6 +167,7 @@ public class AStar : MonoBehaviour
         foreach (PathNode waypoint in path)
         {
             Debug.Log("WAYPOINT " + waypoint);
+            tilemap.SetTile(new Vector3Int(waypoint.x, waypoint.y, 0), wallTile);
         }
 
         return path;
