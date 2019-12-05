@@ -15,6 +15,9 @@ public class AStar : MonoBehaviour
     public Tilemap tilemap;
     public TileBase wallTile;
 
+    public GameObject target;
+    public GameObject chaser;
+
     private Vector3Int size;
     private BoundsInt bounds;
 
@@ -22,36 +25,16 @@ public class AStar : MonoBehaviour
     {
         size = tilemap.size;
         bounds = tilemap.cellBounds;
-
-        startingNode = new PathNode(0, 0);
-        targetNode = new PathNode(6, 4);
-
-        //tilemap.SetTile(new Vector3Int(startingNode.x, startingNode.y, 0), wallTile);
-        //tilemap.SetTile(new Vector3Int(targetNode.x, targetNode.y, 0), wallTile);
-
-
-        /*for (int i = bounds.x; i < size.x; i++)
-        {
-            for (int j = bounds.y; j < size.y; j++)
-            {
-                for (int k = bounds.z; k < size.z; k++)
-                {
-                    if (tilemap.HasTile(new Vector3Int(i, j, k)))
-                    {
-                        TileBase tile = tilemap.GetTile(new Vector3Int(i, j, k));
-                        if (tile.Equals(wallTile))
-                        {
-                            //Debug.Log(i + " " + j + " " + k);
-                        }
-                    }
-                }
-            }
-        }*/
-
     }
 
     public void Update()
     {
+        Vector3 chaserPos = chaser.transform.position;
+        Vector3 targetPos = target.transform.position;
+
+        startingNode = new PathNode((int)chaserPos.x, (int)chaserPos.y);
+        targetNode = new PathNode((int)targetPos.x, (int)targetPos.y);
+
         FindPath(startingNode, targetNode);
     }
 
@@ -143,32 +126,35 @@ public class AStar : MonoBehaviour
 
     List<PathNode> RetracePath(PathNode from, PathNode to)
     {
-        Debug.Log("-14");
         List<PathNode> path = new List<PathNode>();
         PathNode currentNode = new PathNode(0, 0);
 
         for (int i = 0; i < closedNodes.Count; i++)
         {
-            Debug.Log("-15");
             if (closedNodes[i].x == from.x && closedNodes[i].y == from.y)
-            {tilemap.SetTile(new Vector3Int(closedNodes[i].x, closedNodes[i].y, 0), wallTile);
-                Debug.Log("-16");
+            {
                 currentNode = closedNodes[i];
             }
         }
 
         while (!currentNode.Equals(to))
         {
-            Debug.Log("-17");
             currentNode = currentNode.GetParent();
             path.Add(currentNode);
         }
 
+        Debug.Log("---------------");
         foreach (PathNode waypoint in path)
         {
             Debug.Log("WAYPOINT " + waypoint);
             tilemap.SetTile(new Vector3Int(waypoint.x, waypoint.y, 0), wallTile);
         }
+        foreach (PathNode waypoint in path)
+        {
+            tilemap.SetTile(new Vector3Int(waypoint.x, waypoint.y, 0), null);
+        }
+        Debug.Log(path.Count);
+        Debug.Log("---------------");
 
         return path;
 
