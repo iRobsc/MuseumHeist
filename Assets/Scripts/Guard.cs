@@ -20,11 +20,13 @@ public class Guard : MonoBehaviour
     private int waypointIndex;
 
     private Animator animator;
-    
+
+    private int pathIndex;
 
     // Start is called before the first frame update
     void Start()
     {
+
         waypointIndex = 0;
         playerObject = player_collider.gameObject;
         detected = false;
@@ -40,6 +42,8 @@ public class Guard : MonoBehaviour
         }
 
         animator = this.GetComponent<Animator>();
+
+        pathIndex = 0;
 
     }
 
@@ -76,10 +80,30 @@ public class Guard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (detected)
         {
-            target = playerObject;
             speed = 0.05f;
+            
+            AStar astar = this.GetComponent<AStar>();
+            List<PathNode> pathpoints = astar.FindPath(this.gameObject, playerObject);
+            Debug.Log("GUARD " + this.gameObject.transform.position);
+            Debug.Log("PLAYER " + playerObject.transform.position);
+            Debug.Log("TARGET " + target.transform.position);
+            Debug.Log("COUNT " + pathpoints.Count);
+            foreach (PathNode pathnode in pathpoints)
+            {
+                Debug.Log(pathnode);
+            }
+            Debug.Log("FIRST " + pathpoints[0]);
+            Debug.Log("SECOND " + pathpoints[1]);
+            Debug.Log("LAST " + pathpoints[pathpoints.Count - 1]);
+            Debug.Log("CONDITION " + (distance(this.transform.position, new Vector2(pathpoints[0].x, pathpoints[0].y)) < 0.1));
+            if (distance(this.transform.position, new Vector2(pathpoints[0].x, pathpoints[0].y)) < 0.1) {
+                pathIndex++;
+            }
+            target.transform.position = new Vector3(pathpoints[pathIndex].x, pathpoints[pathIndex].y, 0);
+
         }
         else
             target = waypoints[waypointIndex];
@@ -107,14 +131,9 @@ public class Guard : MonoBehaviour
         float posX = transform.position.x - speed * walkDirection.x;
         float posY = transform.position.y - speed * walkDirection.y;
 
-        /*float x = target.transform.position.x - transform.position.x;
-        float y = target.transform.position.y - transform.position.y;
-
-        float posX = transform.position.x - speed * angleX;
-        float posY = transform.position.y - speed * angleY;*/ 
-
         transform.position = new Vector3(posX, posY, 0);
 
+        //animation
         float currX = transform.position.x;
         float currY = transform.position.y;
 
@@ -123,11 +142,8 @@ public class Guard : MonoBehaviour
 
         if (Mathf.Abs(targetX - currX) < 1.0f)
         {
-            Debug.Log("EUREKA");
-            Debug.Log(Mathf.Abs(targetX - currX));
             if (currY < targetY)
             {
-                Debug.Log("UP, UP, UP");
                 animator.SetBool("downwards", false);
                 animator.SetBool("left", false);
                 animator.SetBool("right", false);
@@ -135,7 +151,6 @@ public class Guard : MonoBehaviour
             }
             else
             {
-                Debug.Log("DOWN, DOWN, DOWN");
                 animator.SetBool("upwards", false);
                 animator.SetBool("left", false);
                 animator.SetBool("right", false);
@@ -157,6 +172,7 @@ public class Guard : MonoBehaviour
                 animator.SetBool("right", false);
                 animator.SetBool("left", true);
             }
-        }                
+        }
+
     }
 }

@@ -15,9 +15,6 @@ public class AStar : MonoBehaviour
     public Tilemap tilemap;
     public TileBase wallTile;
 
-    public GameObject target;
-    public GameObject chaser;
-
     private Vector3Int size;
     private BoundsInt bounds;
 
@@ -29,17 +26,22 @@ public class AStar : MonoBehaviour
 
     public void Update()
     {
-        Vector3 chaserPos = chaser.transform.position;
+        /*Vector3 chaserPos = chaser.transform.position;
         Vector3 targetPos = target.transform.position;
 
         startingNode = new PathNode((int)chaserPos.x, (int)chaserPos.y);
         targetNode = new PathNode((int)targetPos.x, (int)targetPos.y);
 
-        FindPath(startingNode, targetNode);
+        FindPath(startingNode, targetNode);*/
     }
 
-    public List<PathNode> FindPath(PathNode startingNode, PathNode targetNode)
+    public List<PathNode> FindPath(GameObject chaser, GameObject target)
     {
+        Vector3 chaserPos = chaser.transform.position;
+        Vector3 targetPos = target.transform.position;
+
+        startingNode = new PathNode((int)chaserPos.x, (int)chaserPos.y);
+        targetNode = new PathNode((int)targetPos.x, (int)targetPos.y);
 
         openNodes = new List<PathNode>();
         closedNodes = new List<PathNode>();
@@ -142,19 +144,13 @@ public class AStar : MonoBehaviour
             currentNode = currentNode.GetParent();
             path.Add(currentNode);
         }
+        path.Reverse();
 
-        Debug.Log("---------------");
         foreach (PathNode waypoint in path)
         {
-            Debug.Log("WAYPOINT " + waypoint);
-            tilemap.SetTile(new Vector3Int(waypoint.x, waypoint.y, 0), wallTile);
+            //Debug.Log("WAYPOINT " + waypoint);
+            //tilemap.SetTile(new Vector3Int(waypoint.x, waypoint.y, 0), wallTile);
         }
-        foreach (PathNode waypoint in path)
-        {
-            tilemap.SetTile(new Vector3Int(waypoint.x, waypoint.y, 0), null);
-        }
-        Debug.Log(path.Count);
-        Debug.Log("---------------");
 
         return path;
 
