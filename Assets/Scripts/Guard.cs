@@ -24,6 +24,10 @@ public class Guard : MonoBehaviour
     private int pathpointIndex;
     public Transform pathfinding;
     private GameObject[] pathpoints;
+    AStar aStar;
+    private bool foundClosestPathpoint;
+    private bool reached;
+    private bool pathpointsCalculated;
 
     // Start is called before the first frame update
     void Start()
@@ -45,23 +49,12 @@ public class Guard : MonoBehaviour
 
         animator = this.GetComponent<Animator>();
 
+        foundClosestPathpoint = false;
+        reached = false;
         pathpointIndex = 0;
-        AStar aStar = this.GetComponent<AStar>();
-        List<PathNode> aStarPoints = aStar.FindPath(this.gameObject, playerObject);
-
-        for (int i = 0; i < aStarPoints.Count; i++)
-        {
-            GameObject go = new GameObject();
-            go.transform.parent = pathfinding;
-            go.transform.position = new Vector3(aStarPoints[i].x, aStarPoints[i].y, 0);
-        }
-        int pathpointAmount = pathfinding.childCount;
-        pathpoints = new GameObject[pathpointAmount];
-        for (int i = 0; i < pathpointAmount; i++)
-        {
-            pathpoints[i] = pathfinding.GetChild(i).gameObject;
-        }
-
+        pathpointsCalculated = false;
+        aStar = this.GetComponent<AStar>();
+        //calculatePathpoints();
     }
 
     public void notify_of_noise(Vector2 position, float sound_level) {
@@ -97,39 +90,70 @@ public class Guard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!detected && pathfinding.childCount > 0)
+        {
+            deletePathpoints();
+        }
 
         if (detected)
         {
-            speed = 0.05f;
-
-            if (distance(this.transform.position, target.transform.position) < 0.1)
+            if (!pathpointsCalculated)
             {
-                pathpointIndex++;
-                if (pathpointIndex == pathpoints.Length) {
-                    pathpointIndex = 0;
+                calculatePathpoints();
+                pathpointsCalculated = true;
+            }
+
+            //find closest pathpoint to current position
+            if (!foundClosestPathpoint)
+            {
+                for (int i = 0; i < pathpoints.Length; i++)
+                {
+                    if (distance(this.transform.position, pathpoints[i].transform.position) < 0.1)
+                    {
+                        pathpointIndex = i;
+                        foundClosestPathpoint = true;
+                    }
                 }
             }
 
-            target = pathpoints[pathpointIndex];
+            speed = 0.1f;
 
-            /*AStar astar = this.GetComponent<AStar>();
-            List<PathNode> pathpoints = astar.FindPath(this.gameObject, playerObject);
-            Debug.Log("GUARD " + this.gameObject.transform.position);
-            Debug.Log("PLAYER " + playerObject.transform.position);
-            Debug.Log("TARGET " + target.transform.position);
-            Debug.Log("COUNT " + pathpoints.Count);
-            foreach (PathNode pathnode in pathpoints)
+            //checking if on the way to or back from the target
+            if (distance(this.transform.position, target.transform.position) < 0.1)
             {
-                Debug.Log(pathnode);
+                if (reached)
+                {
+                    pathpointIndex--;
+                }
+                else
+                {
+                    pathpointIndex++;
+                }
+
+                if (pathpointIndex == pathpoints.Length)
+                {
+                    reached = true;
+                }
+
+                if (pathpointIndex == 0) {
+                    Debug.Log("IT'S OVER");
+                    reached = false;
+                    pathpointsCalculated = false;
+                    foundClosestPathpoint = false;
+                    detected = false;
+                    deletePathpoints();
+                }
+
             }
-            Debug.Log("FIRST " + pathpoints[0]);
-            Debug.Log("SECOND " + pathpoints[1]);
-            Debug.Log("LAST " + pathpoints[pathpoints.Count - 1]);
-            Debug.Log("CONDITION " + (distance(this.transform.position, new Vector2(pathpoints[0].x, pathpoints[0].y)) < 0.1));
-            if (distance(this.transform.position, new Vector2(pathpoints[0].x, pathpoints[0].y)) < 0.1) {
-                pathIndex++;
+
+            //if literally next to the player target switches to player itself
+            if (distance(this.transform.position, playerObject.transform.position) < 1.5)
+            {
+                target = playerObject;
+            } else
+            {
+                target = pathpoints[pathpointIndex];
             }
-            target.transform.position = new Vector3(pathpoints[pathIndex].x, pathpoints[pathIndex].y, 0);*/
 
         }
         else
@@ -201,5 +225,32 @@ public class Guard : MonoBehaviour
             }
         }
 
+    }
+
+    void deletePathpoints() {
+        pathfinding.DetachChildren();
+        for (int i = 0; i < pathpoints.Length; i++)
+        {
+            Destroy(GameObject.Find("pathpoint " + i));
+        }
+    }
+
+    void calculatePathpoints() {
+        List<PathNode> aStarPoints = aStar.FindPath(this.gameObject, playerObject);
+
+        for (int i = 0; i < aStarPoints.Count; i++)
+        {
+            GameObject go = new GameObject();
+            go.transform.parent = pathfinding;
+            go.name = "pathpoint " + i;
+            go.transform.position = new Vector3(aStarPoints[i].x + 1, aStarPoints[i].y + 1, 0);
+        }
+        int pathpointAmount = pathfinding.childCount;
+        pathpoints = new GameObject[pathpointAmount];
+        for (int i = 0; i < pathpointAmount; i++)
+        {
+            pathpoints[i] = pathfinding.GetChild(i).gameObject;
+        }
+        pathpointsCalculated = true;
     }
 }

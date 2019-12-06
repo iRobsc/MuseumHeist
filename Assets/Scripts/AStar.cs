@@ -14,6 +14,8 @@ public class AStar : MonoBehaviour
 
     public Tilemap tilemap;
     public TileBase wallTile;
+    public TileBase markingTile;
+    public TileBase markingTile_type2;
 
     private Vector3Int size;
     private BoundsInt bounds;
@@ -23,25 +25,18 @@ public class AStar : MonoBehaviour
         size = tilemap.size;
         bounds = tilemap.cellBounds;
     }
-
-    public void Update()
-    {
-        /*Vector3 chaserPos = chaser.transform.position;
-        Vector3 targetPos = target.transform.position;
-
-        startingNode = new PathNode((int)chaserPos.x, (int)chaserPos.y);
-        targetNode = new PathNode((int)targetPos.x, (int)targetPos.y);
-
-        FindPath(startingNode, targetNode);*/
-    }
-
+    
     public List<PathNode> FindPath(GameObject chaser, GameObject target)
     {
         Vector3 chaserPos = chaser.transform.position;
         Vector3 targetPos = target.transform.position;
 
-        startingNode = new PathNode((int)chaserPos.x, (int)chaserPos.y);
-        targetNode = new PathNode((int)targetPos.x, (int)targetPos.y);
+        startingNode = new PathNode((int)Mathf.Floor(chaserPos.x) - 1, (int)Mathf.Floor(chaserPos.y) - 1);
+        targetNode = new PathNode((int)Mathf.Floor(targetPos.x) - 1, (int)Mathf.Floor(targetPos.y) - 1);
+
+        //decomment to debug
+        //tilemap.SetTile(new Vector3Int(startingNode.x, startingNode.y, 0), markingTile);
+        //tilemap.SetTile(new Vector3Int(targetNode.x, targetNode.y, 0), markingTile);
 
         openNodes = new List<PathNode>();
         closedNodes = new List<PathNode>();
@@ -108,7 +103,7 @@ public class AStar : MonoBehaviour
                 int neighbourY = node.y + j;
 
                 TileBase tile = tilemap.GetTile(new Vector3Int(neighbourX, neighbourY, 0));
-                if (tile == null)
+                if (!(tile == wallTile))
                 {
                     if (neighbourX >= bounds.x && neighbourX < size.x && neighbourY >= bounds.y && neighbourY < size.y)
                     {
@@ -146,11 +141,12 @@ public class AStar : MonoBehaviour
         }
         path.Reverse();
 
-        foreach (PathNode waypoint in path)
+        //decomment to debug
+        /*foreach (PathNode waypoint in path)
         {
             //Debug.Log("WAYPOINT " + waypoint);
-            //tilemap.SetTile(new Vector3Int(waypoint.x, waypoint.y, 0), wallTile);
-        }
+            //tilemap.SetTile(new Vector3Int(waypoint.x, waypoint.y, 0), markingTile_type2);
+        }*/
 
         return path;
 
