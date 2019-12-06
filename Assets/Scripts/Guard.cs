@@ -21,7 +21,9 @@ public class Guard : MonoBehaviour
 
     private Animator animator;
 
-    private int pathIndex;
+    private int pathpointIndex;
+    public Transform pathfinding;
+    private GameObject[] pathpoints;
 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +45,22 @@ public class Guard : MonoBehaviour
 
         animator = this.GetComponent<Animator>();
 
-        pathIndex = 0;
+        pathpointIndex = 0;
+        AStar aStar = this.GetComponent<AStar>();
+        List<PathNode> aStarPoints = aStar.FindPath(this.gameObject, playerObject);
+
+        for (int i = 0; i < aStarPoints.Count; i++)
+        {
+            GameObject go = new GameObject();
+            go.transform.parent = pathfinding;
+            go.transform.position = new Vector3(aStarPoints[i].x, aStarPoints[i].y, 0);
+        }
+        int pathpointAmount = pathfinding.childCount;
+        pathpoints = new GameObject[pathpointAmount];
+        for (int i = 0; i < pathpointAmount; i++)
+        {
+            pathpoints[i] = pathfinding.GetChild(i).gameObject;
+        }
 
     }
 
@@ -84,8 +101,18 @@ public class Guard : MonoBehaviour
         if (detected)
         {
             speed = 0.05f;
-            
-            AStar astar = this.GetComponent<AStar>();
+
+            if (distance(this.transform.position, target.transform.position) < 0.1)
+            {
+                pathpointIndex++;
+                if (pathpointIndex == pathpoints.Length) {
+                    pathpointIndex = 0;
+                }
+            }
+
+            target = pathpoints[pathpointIndex];
+
+            /*AStar astar = this.GetComponent<AStar>();
             List<PathNode> pathpoints = astar.FindPath(this.gameObject, playerObject);
             Debug.Log("GUARD " + this.gameObject.transform.position);
             Debug.Log("PLAYER " + playerObject.transform.position);
@@ -102,7 +129,7 @@ public class Guard : MonoBehaviour
             if (distance(this.transform.position, new Vector2(pathpoints[0].x, pathpoints[0].y)) < 0.1) {
                 pathIndex++;
             }
-            target.transform.position = new Vector3(pathpoints[pathIndex].x, pathpoints[pathIndex].y, 0);
+            target.transform.position = new Vector3(pathpoints[pathIndex].x, pathpoints[pathIndex].y, 0);*/
 
         }
         else
