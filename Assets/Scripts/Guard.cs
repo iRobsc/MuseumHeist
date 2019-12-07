@@ -214,6 +214,7 @@ public class Guard : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(transform.position, -ray, collidables);
             bool in_fov = Vector2.Dot(view_direction, ray) > fov_dot_thresh;
             bool visible = playerObject.GetComponent<Movement>().playerNoiseAndVisibility.visibility > player_visibility_thresh;
+            visible = playerObject.transform.GetChild(0).GetComponent<MeshRenderer>().enabled ? true : visible;
             if (
                     hit.transform != null && 
                     hit.collider == player_collider && 
