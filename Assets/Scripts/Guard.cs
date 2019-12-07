@@ -136,10 +136,10 @@ public class Guard : MonoBehaviour
                 if (pathpoints.Length < 3){
                     target = playerObject;
                     print("target : player");
-                    speed = 0.06f;
+                    speed = 0.08f;
                 } else {
                     target = pathpoints[2];
-                    speed = 0.04f;
+                    speed = 0.06f;
                     print("target idx 1");
                 }
             }
@@ -194,8 +194,6 @@ public class Guard : MonoBehaviour
 
                     }
                 }
-            } else {
-                print("unoccluded");
             }
         }
 
