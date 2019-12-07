@@ -99,7 +99,8 @@ public class Movement : MonoBehaviour
                 VisibilityOccluder visibility_occluder = hit.collider.gameObject.GetComponent<VisibilityOccluder>();
                 hit_visibility_occluder = visibility_occluder != null;
                 if (hit_visibility_occluder) {
-                    float occlusion_multiplier = 1.0f - visibility_occluder.obstacle_multiplicative_alpha;
+                    //float occlusion_multiplier = 1.0f - visibility_occluder.obstacle_multiplicative_alpha;
+                    float occlusion_multiplier = 0.0f;
                     lightsum += (luminance / falloff_denom) * occlusion_multiplier;
                     break;
                 }
@@ -114,6 +115,8 @@ public class Movement : MonoBehaviour
 
         return lightsum;
     }
+
+    int numnotocl = 0;
 
     private void UpdateVisibility() {
         // Noise

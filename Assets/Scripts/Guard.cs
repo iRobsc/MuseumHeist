@@ -13,6 +13,9 @@ public class Guard : MonoBehaviour
     public float sightRange;
     public string next_scene;
     public bool detected;
+    public float fov_dot_thresh = 0.6f;
+    public float player_visibility_thresh = 0.05f;
+    public float player_audibility_radius_thresh = 3.0f;
     private GameObject playerObject;
     
     private GameObject target;
@@ -28,6 +31,8 @@ public class Guard : MonoBehaviour
     private bool foundClosestPathpoint;
     private bool reached;
     private bool pathpointsCalculated;
+    private Vector2 last_pos = new Vector2(0.0f, 0.0f);
+    Vector2 walkDirection = new Vector2(0.0f, 0.0f);
 
     // Start is called before the first frame update
     void Start()
@@ -57,9 +62,17 @@ public class Guard : MonoBehaviour
         //calculatePathpoints();
     }
 
+    private GameObject temp_target = null;
+    private bool investigate_noise = false;
     public void notify_of_noise(Vector2 position, float sound_level) {
         // TODO react to noise if close and loud enough  
-        print(this + " notified of noise at " + position);
+        /*print(this + " notified of noise at " + position);
+        investigate_noise = true;
+        temp_target = new GameObject();
+        temp_target.transform.position = (Vector3) position;
+        //Instantiate(temp_target, position);
+        print(temp_target.transform.position);
+        target = temp_target;*/ 
     }
 
     private double distance(Vector2 from, Vector2 to) {
@@ -88,8 +101,24 @@ public class Guard : MonoBehaviour
     }    
 
     // Update is called once per frame
+    int cc = 0;
+    bool standing_still = false;
+    int standing_still_counter = 0;
     void Update()
     {
+
+        if (standing_still) {
+            standing_still = (++standing_still_counter % 300) != 0;
+            animator.enabled = false;
+            if (!standing_still)
+                animator.enabled = true;
+            return;
+        }
+
+        if (investigate_noise) {
+           calculatePathpoints(); 
+        }
+
         if (!detected && pathfinding.childCount > 0)
         {
             deletePathpoints();
@@ -99,89 +128,118 @@ public class Guard : MonoBehaviour
         {
             if (!pathpointsCalculated)
             {
-                calculatePathpoints();
-                pathpointsCalculated = true;
-            }
-
-            //find closest pathpoint to current position
-            if (!foundClosestPathpoint)
-            {
-                for (int i = 0; i < pathpoints.Length; i++)
-                {
-                    if (distance(this.transform.position, pathpoints[i].transform.position) < 0.1)
-                    {
-                        pathpointIndex = i;
-                        foundClosestPathpoint = true;
-                    }
+                print("calc pp");
+                if (!calculatePathpoints()) {
+                    target = playerObject;
+                };
+                //pathpointsCalculated = true;
+                if (pathpoints.Length < 3){
+                    target = playerObject;
+                    print("target : player");
+                    speed = 0.06f;
+                } else {
+                    target = pathpoints[2];
+                    speed = 0.04f;
+                    print("target idx 1");
                 }
             }
-
-            speed = 0.1f;
 
             //checking if on the way to or back from the target
+            if(target == null)
+                return;
             if (distance(this.transform.position, target.transform.position) < 0.1)
             {
-                if (reached)
-                {
-                    pathpointIndex--;
-                }
-                else
-                {
-                    pathpointIndex++;
-                }
+                print(pathpointIndex);
+                pathpointIndex++;
 
-                if (pathpointIndex == pathpoints.Length)
-                {
-                    reached = true;
-                }
-
-                if (pathpointIndex == 0) {
+                if (pathpointIndex > pathpoints.Length - 1) {
                     Debug.Log("IT'S OVER");
                     reached = false;
                     pathpointsCalculated = false;
                     foundClosestPathpoint = false;
-                    detected = false;
                     deletePathpoints();
+                    return;
                 }
 
             }
 
-            //if literally next to the player target switches to player itself
-            if (distance(this.transform.position, playerObject.transform.position) < 1.5)
-            {
-                target = playerObject;
-            } else
-            {
+            if(pathpoints.Length > pathpointIndex)
                 target = pathpoints[pathpointIndex];
-            }
 
         }
-        else
+        else {
             target = waypoints[waypointIndex];
+            Vector2 ray = direction(transform.position, target.transform.position);
+            LayerMask collidables = LayerMask.GetMask("Collidables");
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, -ray, collidables);
+            float dx = transform.position.x - target.transform.position.x;
+            float dy = transform.position.y - target.transform.position.y;
+            float distance = Mathf.Sqrt(dx*dx+dy*dy);
+            if (hit != null && hit.collider.name == "door") {
+                if (distance > hit.distance && (hit.transform.GetChild(0).GetComponent<DoorBlocker>().is_blocking)) {
+                    standing_still = true;
+                    for (int i = waypointIndex; i < waypoints.Length; i++) {
+                        Vector2 ray1 = direction(transform.position, waypoints[i].transform.position);
+                        RaycastHit2D hit1 = Physics2D.Raycast(transform.position, -ray1, collidables);
+                        float dx1 = transform.position.x - waypoints[i].transform.position.x;
+                        float dy1 = transform.position.y - waypoints[i].transform.position.y;
+                        float distance1 = Mathf.Sqrt(dx1*dx1+dy1*dy1);
+                        if (hit1 == null){
+                            waypointIndex = i;
+                            break;
+                        } else if (hit1.distance > distance1) {
+                            waypointIndex = i;
+                            break;
+                        }
 
-        if (target == waypoints[waypointIndex] && distance(transform.position, target.transform.position) < 1)
+                    }
+                }
+            } else {
+                print("unoccluded");
+            }
+        }
+
+        if (target == waypoints[waypointIndex] && distance(transform.position, target.transform.position) < 0.3f)
         {
             waypointIndex ++;
             if (waypointIndex == waypoints.Length)
                 waypointIndex = 0;
             target = waypoints[waypointIndex];
         } 
-        else if (!detected && roomLights.activeSelf) 
+        else if (!detected) 
         {
-            Vector2 sightDirection = direction(transform.position, playerObject.transform.position);
+            Vector2 view_direction = walkDirection; 
+            Vector2 ray = direction(transform.position, playerObject.transform.position);
             LayerMask collidables = LayerMask.GetMask("Collidables");
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, -sightDirection, sightRange, collidables);
-            if (hit.transform == null && distance(transform.position, playerObject.transform.position) <= sightRange)
-            {
-                print(hit.collider);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, -ray, collidables);
+            bool in_fov = Vector2.Dot(view_direction, ray) > fov_dot_thresh;
+            bool visible = playerObject.GetComponent<Movement>().playerNoiseAndVisibility.visibility > player_visibility_thresh;
+            if (
+                    hit.transform != null && 
+                    hit.collider == player_collider && 
+                    in_fov &&
+                    visible
+            ) {
+                print("player spotted" + playerObject.GetComponent<Movement>().playerNoiseAndVisibility.visibility);
                 detected = true;
+                return;
             }
+
+            /*float dx = playerObject.transform.position.x - transform.position.x;
+            float dy = playerObject.transform.position.y - transform.position.y;
+            float pg_distance = Mathf.Sqrt(dx*dx+dy*dy);
+            if (pg_distance < player_audibility_radius_thresh * playerObject.GetComponent<Movement>().playerNoiseAndVisibility.noise) {
+                print("player heard");
+                detected = true;
+                return;
+            }*/
         }
         
-        Vector2 walkDirection = direction(transform.position, target.transform.position);
+        walkDirection = direction(transform.position, target.transform.position);
         float posX = transform.position.x - speed * walkDirection.x;
         float posY = transform.position.y - speed * walkDirection.y;
 
+        //last_pos = (Vector2) transform.position;
         transform.position = new Vector3(posX, posY, 0);
 
         //animation
@@ -235,8 +293,13 @@ public class Guard : MonoBehaviour
         }
     }
 
-    void calculatePathpoints() {
+    bool calculatePathpoints() {
         List<PathNode> aStarPoints = aStar.FindPath(this.gameObject, playerObject);
+        if (aStarPoints == null) {
+            print("recalculating path!");
+            pathpointsCalculated = false;
+            return false;
+        }
 
         for (int i = 0; i < aStarPoints.Count; i++)
         {
@@ -252,5 +315,7 @@ public class Guard : MonoBehaviour
             pathpoints[i] = pathfinding.GetChild(i).gameObject;
         }
         pathpointsCalculated = true;
+        return true;
+        //pathpointIndex = 0;
     }
 }

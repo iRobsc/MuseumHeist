@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class DoorBlocker : MonoBehaviour
 {
@@ -8,7 +9,11 @@ public class DoorBlocker : MonoBehaviour
     /* public stuff */
     public bool is_blocking = false;
     public GameObject blocking_group;
-    
+    public Tilemap tileMap;
+    public Vector3Int blocktile1;
+    public Vector3Int blocktile2;
+    public TileBase blockingtile;
+
     /* private stuff */
     private List<Collider2D> blocking_colliders;
     private int n_is_blocking = 0;
@@ -18,6 +23,10 @@ public class DoorBlocker : MonoBehaviour
         foreach (Collider2D c in blocking_colliders) {
             if (c == collider) {
                 n_is_blocking++;
+                if (n_is_blocking == 1) {
+                    tileMap.SetTile(blocktile1, blockingtile);
+                    tileMap.SetTile(blocktile2, blockingtile);
+                }
                 break;
             }
         }
@@ -29,6 +38,10 @@ public class DoorBlocker : MonoBehaviour
         foreach (Collider2D c in blocking_colliders) {
             if (c == collider) {
                 n_is_blocking--;
+                if (n_is_blocking == 0) {
+                    tileMap.SetTile(blocktile1, null);
+                    tileMap.SetTile(blocktile2, null);
+                }
                 break;
             }
         }

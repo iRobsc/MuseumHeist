@@ -52,6 +52,8 @@ public class Throwable : MonoBehaviour
             collision.transform.position.x,
             collision.transform.position.y
         );
+        pos = transform.TransformPoint(pos);
+        print(pos);
 
         // notify guards
         foreach (Transform child in guards.transform) {
@@ -96,8 +98,8 @@ public class Throwable : MonoBehaviour
 
             // move object to player
             Vector3 throw_pos = new Vector3(
-                player_collider.transform.position.x + 0.5f*Mathf.Cos(angle / rad_to_deg),
-                player_collider.transform.position.y + 0.5f*Mathf.Sin(angle / rad_to_deg),
+                player_collider.transform.position.x + 1.0f*Mathf.Cos(angle / rad_to_deg),
+                player_collider.transform.position.y + 1.0f*Mathf.Sin(angle / rad_to_deg),
                 player_collider.transform.position.z
             );
             transform.position = throw_pos;

@@ -31,9 +31,13 @@ public class AStar : MonoBehaviour
         Vector3 chaserPos = chaser.transform.position;
         Vector3 targetPos = target.transform.position;
 
-        startingNode = new PathNode((int)Mathf.Floor(chaserPos.x) - 1, (int)Mathf.Floor(chaserPos.y) - 1);
-        targetNode = new PathNode((int)Mathf.Floor(targetPos.x) - 1, (int)Mathf.Floor(targetPos.y) - 1);
-
+        startingNode = new PathNode((int)Mathf.Round(chaserPos.x), (int)Mathf.Round(chaserPos.y));
+        targetNode = new PathNode((int)Mathf.Round(targetPos.x), (int)Mathf.Round(targetPos.y));
+        
+        TileBase starttile = tilemap.GetTile(new Vector3Int(startingNode.x, startingNode.y, 0));
+        TileBase targettile = tilemap.GetTile(new Vector3Int(targetNode.x, targetNode.y, 0));
+        if (startingNode == wallTile || targettile == wallTile)
+            return null;
         //decomment to debug
         //tilemap.SetTile(new Vector3Int(startingNode.x, startingNode.y, 0), markingTile);
         //tilemap.SetTile(new Vector3Int(targetNode.x, targetNode.y, 0), markingTile);
@@ -142,11 +146,11 @@ public class AStar : MonoBehaviour
         path.Reverse();
 
         //decomment to debug
-        /*foreach (PathNode waypoint in path)
+        foreach (PathNode waypoint in path)
         {
             //Debug.Log("WAYPOINT " + waypoint);
-            //tilemap.SetTile(new Vector3Int(waypoint.x, waypoint.y, 0), markingTile_type2);
-        }*/
+            tilemap.SetTile(new Vector3Int(waypoint.x, waypoint.y, 0), markingTile_type2);
+        }
 
         return path;
 
