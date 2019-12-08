@@ -14,7 +14,8 @@ public class Door : MonoBehaviour
     public Collider2D prompt_collider;
     public Collider2D block_collider;
     public GameObject guards;
-    public AudioClip openclose_clip;
+    public AudioClip open_clip;
+    public AudioClip close_clip;
     public AudioClip locked_clip;
     public AudioSource audiosource;
     
@@ -43,7 +44,8 @@ public class Door : MonoBehaviour
 
     public void try_open_door() {
         if (!is_blocked()) {
-            audiosource.clip = openclose_clip;
+            audiosource.clip = open_clip;
+            audiosource.time = 0.1f;
             audiosource.Play();
             is_open = true;
             transform.GetChild(0).RotateAround(transform.position, Vector3.forward, -80.0f);
@@ -55,7 +57,8 @@ public class Door : MonoBehaviour
 
     public void close_door() {
         if(is_open) {
-            audiosource.clip = openclose_clip;
+            audiosource.clip = close_clip;
+            audiosource.time = 0.1f;
             audiosource.Play();
             is_open = false;
             transform.GetChild(0).RotateAround(transform.position, Vector3.forward, 80.0f);

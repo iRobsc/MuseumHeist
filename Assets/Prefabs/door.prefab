@@ -188,7 +188,7 @@ Transform:
   m_GameObject: {fileID: 6170134559251559778}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.61082, y: -3.1790285, z: 44.02931}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_Children:
   - {fileID: 6170134559320819233}
   m_Father: {fileID: 0}
@@ -239,6 +239,10 @@ MonoBehaviour:
   prompt_collider: {fileID: 6170134559251559777}
   block_collider: {fileID: 6170134559320819237}
   guards: {fileID: 0}
+  open_clip: {fileID: 8300000, guid: 0aa31631b37dc9342bd93b74a9d29345, type: 3}
+  close_clip: {fileID: 8300000, guid: 87e3993fa3ad2fe40a59cd6d00b20d7c, type: 3}
+  locked_clip: {fileID: 8300000, guid: 0aa31631b37dc9342bd93b74a9d29345, type: 3}
+  audiosource: {fileID: 8317861175897906168}
 --- !u!82 &8317861175897906168
 AudioSource:
   m_ObjectHideFlags: 0
@@ -413,7 +417,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 52c65c7b151c8ec41986d52b5f544822, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.44313726, g: 0.44313726, b: 0.44313726, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -498,7 +502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0184ff86886f974d95dfead14754f36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MultiplicativeColor: {r: 0, g: 0, b: 0, a: 0.5019608}
+  MultiplicativeColor: {r: 0, g: 0, b: 0, a: 0.78431374}
   AdditiveColor: {r: 0, g: 0, b: 0, a: 0}
   Material: {fileID: 2100000, guid: 0a8c132f813f5514b9f5b48ff3956482, type: 2}
   LightObstacleScale: 1
@@ -517,9 +521,9 @@ MonoBehaviour:
   is_blocking: 0
   blocking_group: {fileID: 0}
   tileMap: {fileID: 0}
-  blocktile1: {x: 0, y: 0, z: 0}
-  blocktile2: {x: 0, y: 0, z: 0}
-  blockingtile: {fileID: 0}
+  blocktile1: {x: 5, y: 10, z: 0}
+  blocktile2: {x: 4, y: 10, z: 0}
+  blockingtile: {fileID: 11400000, guid: 9eb3eff3db8bb91478b9ef64df559e75, type: 2}
 --- !u!114 &1170076394
 MonoBehaviour:
   m_ObjectHideFlags: 0
