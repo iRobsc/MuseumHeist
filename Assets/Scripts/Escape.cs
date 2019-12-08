@@ -19,6 +19,7 @@ public class Escape : MonoBehaviour
     {
         if (collider != player_collider || !isActive)
             return;
+        GameController.controller.levelsUnlocked += 1;
         SceneManager.LoadScene(next_scene);
     }
 
