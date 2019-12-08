@@ -1,0 +1,1375 @@
+fileFormatVersion: 2
+guid: 5b1042c7882903344ab8816342025e6f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5960136607042468356
+    second: floor-wall-textures2_0
+  - first:
+      213: -8996869065241472025
+    second: floor-wall-textures2_1
+  - first:
+      213: 9046556062252491096
+    second: floor-wall-textures2_2
+  - first:
+      213: 9073234145702863633
+    second: floor-wall-textures2_3
+  - first:
+      213: -1747147548033213898
+    second: floor-wall-textures2_4
+  - first:
+      213: -1574735381157900288
+    second: floor-wall-textures2_5
+  - first:
+      213: 5898566817692536524
+    second: floor-wall-textures2_6
+  - first:
+      213: -7265234847358423855
+    second: floor-wall-textures2_7
+  - first:
+      213: 3122476395237817899
+    second: floor-wall-textures2_8
+  - first:
+      213: 168080309152964404
+    second: floor-wall-textures2_9
+  - first:
+      213: -9075419033390019623
+    second: floor-wall-textures2_10
+  - first:
+      213: 2685763040340419483
+    second: floor-wall-textures2_11
+  - first:
+      213: -5468117449187880337
+    second: floor-wall-textures2_12
+  - first:
+      213: -2475653749057016079
+    second: floor-wall-textures2_13
+  - first:
+      213: -127061302177170229
+    second: floor-wall-textures2_14
+  - first:
+      213: 211202320606273616
+    second: floor-wall-textures2_15
+  - first:
+      213: -7255383207618018483
+    second: floor-wall-textures2_16
+  - first:
+      213: 5139690503343634565
+    second: floor-wall-textures2_17
+  - first:
+      213: -5459716185989101730
+    second: floor-wall-textures2_18
+  - first:
+      213: 3238183244147355080
+    second: floor-wall-textures2_19
+  - first:
+      213: 4453220263090642853
+    second: floor-wall-textures2_20
+  - first:
+      213: -1568805853060834884
+    second: floor-wall-textures2_21
+  - first:
+      213: -6425207031447035545
+    second: floor-wall-textures2_22
+  - first:
+      213: -3958610646664667187
+    second: floor-wall-textures2_23
+  - first:
+      213: -9045064293034071563
+    second: floor-wall-textures2_24
+  - first:
+      213: -7481960796508138305
+    second: floor-wall-textures2_25
+  - first:
+      213: -1675428662990781924
+    second: floor-wall-textures2_26
+  - first:
+      213: -1659330441658219933
+    second: floor-wall-textures2_27
+  - first:
+      213: 4102604374907540882
+    second: floor-wall-textures2_28
+  - first:
+      213: -5782826824255021501
+    second: floor-wall-textures2_29
+  - first:
+      213: 8154719016722978858
+    second: floor-wall-textures2_30
+  - first:
+      213: 6294248343279072759
+    second: floor-wall-textures2_31
+  - first:
+      213: -5082763571367986615
+    second: floor-wall-textures2_32
+  - first:
+      213: 2136610794177045575
+    second: floor-wall-textures2_33
+  - first:
+      213: -4178644661005522167
+    second: floor-wall-textures2_34
+  - first:
+      213: -7509842185832766185
+    second: floor-wall-textures2_35
+  - first:
+      213: -4916948173705723829
+    second: floor-wall-textures2_36
+  - first:
+      213: -3957692553918556500
+    second: floor-wall-textures2_37
+  - first:
+      213: 4086479892444723279
+    second: floor-wall-textures2_38
+  - first:
+      213: -6414837163438619517
+    second: floor-wall-textures2_39
+  - first:
+      213: -4829963730157144123
+    second: floor-wall-textures2_40
+  - first:
+      213: 3538147053450443451
+    second: floor-wall-textures2_41
+  - first:
+      213: 81758944265768569
+    second: floor-wall-textures2_42
+  - first:
+      213: 2117945879985055624
+    second: floor-wall-textures2_43
+  - first:
+      213: -6261412845487769477
+    second: floor-wall-textures2_44
+  - first:
+      213: 8906205866791747419
+    second: floor-wall-textures2_45
+  - first:
+      213: -2414140722924960966
+    second: floor-wall-textures2_46
+  - first:
+      213: 4666173344147312026
+    second: floor-wall-textures2_47
+  - first:
+      213: 6535393896036340548
+    second: floor-wall-textures2_48
+  - first:
+      213: -7383184707799471982
+    second: floor-wall-textures2_49
+  - first:
+      213: 7841787611522655804
+    second: floor-wall-textures2_50
+  - first:
+      213: -8978299073732253364
+    second: floor-wall-textures2_51
+  - first:
+      213: -22267154343746348
+    second: floor-wall-textures2_52
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 2
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: floor-wall-textures2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 144
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e35a65c8f147d974e9b8c6f9a6ee3710
+      internalID: 5960136607042468356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_1
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 144
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d11f6ba6a7d0e9b48976a4a32021004d
+      internalID: -8996869065241472025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_2
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 130
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8038d57fa518ccc4194c62e95136fb2e
+      internalID: 9046556062252491096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_3
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 133
+        width: 24
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed67d5c7cf050024a90b10216d51722b
+      internalID: 9073234145702863633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_4
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 136
+        width: 24
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4e1bc2ded1c22c4486beeeac68dbe6b
+      internalID: -1747147548033213898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_5
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 139
+        width: 24
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a5a1cd5f22d12d4b8f8141f9df07a44
+      internalID: -1574735381157900288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_6
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 142
+        width: 18
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 671d8a5ebc9cbc24baf16d5e252df1a2
+      internalID: 5898566817692536524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_7
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 130
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 321b5223ccaf3224da0ebe250981e758
+      internalID: -7265234847358423855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_8
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 130
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18b29cd3e9af71d4987ae0e02f12e634
+      internalID: 3122476395237817899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_9
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 130
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db1b28858cb6d31489e90471107ea171
+      internalID: 168080309152964404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_10
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 130
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 661c63f8827e9c8418b983369922cc54
+      internalID: -9075419033390019623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_11
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 130
+        width: 47
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebab5515d50ff084d8275b3023a7b170
+      internalID: 2685763040340419483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 130
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c46be7b6664423447af6d48582cee83e
+      internalID: -5468117449187880337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_13
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 130
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c2684a983f89b546a527399163b95ea
+      internalID: -2475653749057016079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_14
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 130
+        width: 24
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58655dce455c6e345b83f6533b9af08b
+      internalID: -127061302177170229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 78
+        width: 24
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bbbd1a24e0cf9540a689a2c9cd4d041
+      internalID: 211202320606273616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_16
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 79
+        width: 33
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bb94a6f1b8e5704dbee730cfc809ed3
+      internalID: -7255383207618018483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_17
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 106
+        width: 42
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1d7d3500425ed94cad84a392f15ae2c
+      internalID: 5139690503343634565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_18
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 104
+        width: 24
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a60379097bcad744b58c242294e3a7a
+      internalID: -5459716185989101730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_19
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 104
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ef1246a665c35445821ff78b08f2c1c
+      internalID: 3238183244147355080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_20
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 104
+        width: 25
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3cba09456aed684b8aca5ab505732ac
+      internalID: 4453220263090642853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_21
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 104
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07537ddc0fb6cd048a898feb8343ddfe
+      internalID: -1568805853060834884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_22
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 80
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6c6819c9a6c8ba4fa841c1eda836dc2
+      internalID: -6425207031447035545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_23
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 51
+        width: 24
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c24da7dc6b985d9469d2c28167e2fe07
+      internalID: -3958610646664667187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_24
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 78
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66984b0f8dd10f34cb7257aae777d362
+      internalID: -9045064293034071563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_25
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 78
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4e5820e3756a1a44a41302117e1f19d
+      internalID: -7481960796508138305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_26
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 78
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d4c66e3c5534434089b1db1c3ae98bf
+      internalID: -1675428662990781924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_27
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 78
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57433917ed8721549b8176928fd537d9
+      internalID: -1659330441658219933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 52
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b70cfcfadb27ef04abf3393693ae6b2c
+      internalID: 4102604374907540882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_29
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 52
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 608f183a4749f7b4685333a5bec32572
+      internalID: -5782826824255021501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_30
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 52
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d758c8554547ad4abe455850c68e836
+      internalID: 8154719016722978858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_31
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 52
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 427ecde8f9fb79e408b55c6a5e7a4dfa
+      internalID: 6294248343279072759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_32
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 52
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3affe87a22a1f8d42b1b20b12c4e476e
+      internalID: -5082763571367986615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_33
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 52
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee0d41f430097f4479d84ffaf7cddc7b
+      internalID: 2136610794177045575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_34
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 52
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 887b4957fa4cf694c861f7c5d089ae86
+      internalID: -4178644661005522167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_35
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 52
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 597790b11bfc3c947ad081ee4eb17c9d
+      internalID: -7509842185832766185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 26
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba417a0142dccca419874cb29bc1fb76
+      internalID: -4916948173705723829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_37
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 26
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d505e1d824234a489144b61bf9b29d3
+      internalID: -3957692553918556500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_38
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 26
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 327d3512a087e0445938d76d14072b41
+      internalID: 4086479892444723279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_39
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 26
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f78d82db65830f489c11db458263b70
+      internalID: -6414837163438619517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_40
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 26
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e74c4476ae6f9d4ca1c071d06e29c39
+      internalID: -4829963730157144123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_41
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 26
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f003c3bf25c5c474cbead919c853df6e
+      internalID: 3538147053450443451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_42
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 26
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 342de57971f7ff04cb318f0ad13bb0bf
+      internalID: 81758944265768569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_43
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 26
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 963a0ca489fa04c43b004c493d5cd55b
+      internalID: 2117945879985055624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_44
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 26
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7829080c64e8c6f47b2b1aa01e87fec0
+      internalID: -6261412845487769477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_45
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 3
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf2aa1450054a9c4d9c091b585940c68
+      internalID: 8906205866791747419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_46
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 1
+        width: 35
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 324ee861fd7e7744aa65a829572ba020
+      internalID: -2414140722924960966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_47
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 4
+        width: 32
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9946362d33ffa424084270f13ab670a1
+      internalID: 4666173344147312026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_48
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 0
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0315a2e437a62164fbbfee518092380e
+      internalID: 6535393896036340548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_49
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 0
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76c4c71d741af344198120d48aaaa9ac
+      internalID: -7383184707799471982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_50
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 0
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47068d8a7bd667a418fa80f2db08bd9f
+      internalID: 7841787611522655804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_51
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 0
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2abba9fa1660d8343b7998421c950a0d
+      internalID: -8978299073732253364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor-wall-textures2_52
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 0
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94f7696e026a7fc4dbb038ef270d7608
+      internalID: -22267154343746348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
