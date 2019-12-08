@@ -40,7 +40,7 @@ public class pathy : MonoBehaviour
     }
 
     private void calculate_neighbours(Node parent, Node end, List<Node> open, List<Node> closed, Dictionary<Node,Node> came_from) {
-        float diag = 2.0f*1.4142f;
+        float diag = 3.0f*1.4142f;
         float straight = 1.0f;
         for (int dy = -1; dy <= 1; dy++) {
             for (int dx = -1; dx <= 1; dx++) {
