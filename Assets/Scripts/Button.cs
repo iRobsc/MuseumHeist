@@ -16,7 +16,9 @@ public class Button : MonoBehaviour
     public Text textPrompt;
     public Camera camera;
     public string prompt_text;
-
+    public AudioSource source;
+    public AudioClip clip;
+   
     /* private stuff */
     private bool player_near = false;
 
@@ -41,6 +43,9 @@ public class Button : MonoBehaviour
         if (player_near && Input.GetKey(KeyCode.F)) {
             textPrompt.GetComponent<Text>().enabled = false;
             // TODO generalize to do more stuff than disable
+            source.clip = clip;
+            source.time = 0.02f;
+            source.Play();
             group_to_affect.SetActive(false);
         }
     }

@@ -9,6 +9,9 @@ public class InteractionTrigger : MonoBehaviour
     public GameObject group_to_affect;
     public bool action_enable;
     private bool player_near = false;
+    public AudioSource source;
+    public AudioClip clip;
+
 
     void Start() {
         group_to_affect.SetActive(!action_enable);
@@ -33,6 +36,9 @@ public class InteractionTrigger : MonoBehaviour
     {
         if (player_near && Input.GetKey(KeyCode.F)) {
             group_to_affect.SetActive(action_enable);
+            source.clip = clip;
+            source.time = 0.02f;
+            source.Play();
             print("Activated!");
         }
     }

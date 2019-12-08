@@ -13,6 +13,9 @@ public class LaserTrigger : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
+        
+        GameObject.Find("background_music").GetComponent<Sound>().play_alarm_sound();
+
         // call enable() for all alarm lights in the alarm lights group
         foreach (Transform child in alarm_light_group.transform) {
             child.gameObject.GetComponent<AlarmLight>().enable();
