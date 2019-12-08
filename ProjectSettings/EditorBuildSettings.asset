@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/sthlm_museum.unity
     guid: bfe794b35cc6a804d9ee73a427c339b0
+  - enabled: 1
+    path: Assets/Scenes/guard_level.unity
+    guid: 4663b0c113ff1304ea59d2eb6fcc984a
   m_configObjects: {}
