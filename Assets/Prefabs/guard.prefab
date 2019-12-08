@@ -147,6 +147,9 @@ MonoBehaviour:
   sightRange: 0
   next_scene: basicMovement
   detected: 0
+  fov_dot_thresh: 0
+  player_visibility_thresh: 0.05
+  player_audibility_radius_thresh: 3
   pathfinding: {fileID: 0}
 --- !u!50 &1260324807
 Rigidbody2D:
