@@ -27,7 +27,8 @@ public class Guard : MonoBehaviour
     private int pathpointIndex;
     public Transform pathfinding;
     private GameObject[] pathpoints;
-    AStar aStar;
+    //AStar aStar;
+    pathy pathyy;
     private bool foundClosestPathpoint;
     private bool reached;
     private bool pathpointsCalculated;
@@ -58,7 +59,8 @@ public class Guard : MonoBehaviour
         reached = false;
         pathpointIndex = 0;
         pathpointsCalculated = false;
-        aStar = this.GetComponent<AStar>();
+        //aStar = this.GetComponent<AStar>();
+        pathyy = this.GetComponent<pathy>();
         //calculatePathpoints();
     }
 
@@ -104,6 +106,7 @@ public class Guard : MonoBehaviour
     int cc = 0;
     bool standing_still = false;
     int standing_still_counter = 0;
+    int something_counter = 0;
     void Update()
     {
 
@@ -130,16 +133,17 @@ public class Guard : MonoBehaviour
             {
                 print("calc pp");
                 if (!calculatePathpoints()) {
-                    target = playerObject;
+                    //target = playerObject;
+                    standing_still = true;
                 };
                 //pathpointsCalculated = true;
                 if (pathpoints.Length < 3){
                     target = playerObject;
                     print("target : player");
-                    speed = 0.06f;
+                    speed = 0.08f;
                 } else {
-                    target = pathpoints[2];
-                    speed = 0.04f;
+                    target = pathpoints[1];
+                    speed = 0.06f;
                     print("target idx 1");
                 }
             }
@@ -149,6 +153,13 @@ public class Guard : MonoBehaviour
                 return;
             if (distance(this.transform.position, target.transform.position) < 0.1)
             {
+                something_counter++;
+                if(something_counter % 5 == 0) {
+                    something_counter %= 5;
+                    deletePathpoints();
+                    calculatePathpoints();
+                }
+
                 print(pathpointIndex);
                 pathpointIndex++;
 
@@ -194,8 +205,6 @@ public class Guard : MonoBehaviour
 
                     }
                 }
-            } else {
-                print("unoccluded");
             }
         }
 
@@ -295,8 +304,32 @@ public class Guard : MonoBehaviour
     }
 
     bool calculatePathpoints() {
-        List<PathNode> aStarPoints = aStar.FindPath(this.gameObject, playerObject);
-        if (aStarPoints == null) {
+        //List<PathNode> aStarPoints = aStar.FindPath(this.gameObject, playerObject);
+        List<pathy.Node> pathyNodes = pathyy.find_path(this.gameObject, playerObject);
+        
+        if (pathyNodes == null) {
+            pathpointsCalculated = false;
+            return false;
+        }
+
+        for (int i = 0; i < pathyNodes.Count; i++) {
+            GameObject go = new GameObject();
+            go.transform.parent = pathfinding;
+            go.name = "pathpoint " + i;
+            go.transform.position = new Vector3(pathyNodes[i].x, pathyNodes[i].y, 0);
+        }
+
+        int pathpointAmount = pathfinding.childCount;
+        pathpoints = new GameObject[pathpointAmount];
+        for (int i = 0; i < pathpointAmount; i++)
+        {
+            pathpoints[i] = pathfinding.GetChild(i).gameObject;
+        }
+        pathpointsCalculated = true;
+        return true;
+
+        //List<PathNode> aStarPoints = aStar.FindPath(this.gameObject, playerObject);
+        /*if (aStarPoints == null) {
             print("recalculating path!");
             pathpointsCalculated = false;
             return false;
@@ -316,7 +349,7 @@ public class Guard : MonoBehaviour
             pathpoints[i] = pathfinding.GetChild(i).gameObject;
         }
         pathpointsCalculated = true;
-        return true;
+        return true;*/
         //pathpointIndex = 0;
     }
 }
