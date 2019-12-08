@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -127,33 +128,37 @@ public class AStar : MonoBehaviour
 
     List<PathNode> RetracePath(PathNode from, PathNode to)
     {
-        List<PathNode> path = new List<PathNode>();
-        PathNode currentNode = new PathNode(0, 0);
+        try {
+            List<PathNode> path = new List<PathNode>();
+            PathNode currentNode = new PathNode(0, 0);
 
-        for (int i = 0; i < closedNodes.Count; i++)
-        {
-            if (closedNodes[i].x == from.x && closedNodes[i].y == from.y)
+            for (int i = 0; i < closedNodes.Count; i++)
             {
-                currentNode = closedNodes[i];
+                if (closedNodes[i].x == from.x && closedNodes[i].y == from.y)
+                {
+                    currentNode = closedNodes[i];
+                    break;
+                }
             }
+
+            while (!currentNode.Equals(to))
+            {
+                currentNode = currentNode.GetParent();
+                path.Add(currentNode);
+            }
+            path.Reverse();
+
+            //decomment to debug
+            foreach (PathNode waypoint in path)
+            {
+                //Debug.Log("WAYPOINT " + waypoint);
+                tilemap.SetTile(new Vector3Int(waypoint.x, waypoint.y, 0), markingTile_type2);
+            }
+
+            return path;
+        } catch (Exception e) {
+            return null;
         }
-
-        while (!currentNode.Equals(to))
-        {
-            currentNode = currentNode.GetParent();
-            path.Add(currentNode);
-        }
-        path.Reverse();
-
-        //decomment to debug
-        foreach (PathNode waypoint in path)
-        {
-            //Debug.Log("WAYPOINT " + waypoint);
-            tilemap.SetTile(new Vector3Int(waypoint.x, waypoint.y, 0), markingTile_type2);
-        }
-
-        return path;
-
     }
 
 }

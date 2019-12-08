@@ -133,7 +133,7 @@ public class Movement : MonoBehaviour
         playerNoiseAndVisibility.visibility =
                 visibility_illumination_offset +
                 visibility_illumination_multiplier * lightsum;
-        print(playerNoiseAndVisibility.visibility);
+        //print(playerNoiseAndVisibility.visibility);
     }
 
     // Update is called once per frame
