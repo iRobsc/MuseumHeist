@@ -154,8 +154,8 @@ public class Guard : MonoBehaviour
             if (distance(this.transform.position, target.transform.position) < 0.1)
             {
                 something_counter++;
-                if(something_counter % 5 == 0) {
-                    something_counter %= 5;
+                if(something_counter % 2 == 0) {
+                    something_counter %= 2;
                     deletePathpoints();
                     calculatePathpoints();
                 }
