@@ -26,6 +26,12 @@ public class Movement : MonoBehaviour
 
     /* private stuff */
     private Vector3 velocity = new Vector3(0.0f, 0.0f, 0.0f);
+    private Animator animator;
+
+    private void Start()
+    {
+        animator = this.GetComponent<Animator>();
+    }
 
     /* types */
     public struct NoiseAndVisibility {
@@ -141,6 +147,53 @@ public class Movement : MonoBehaviour
     {
         UpdateMovement();
         UpdateVisibility();
+
+        Animate();
         // apply drag to velocity
+    }
+
+    void Animate() {
+
+        //animator;
+        Debug.Log(velocity);
+        Debug.Log(Mathf.Abs(this.velocity.x) < Mathf.Abs(this.velocity.y));
+        Debug.Log(this.velocity.y > 0);
+        Debug.Log(this.velocity.x > 0);
+
+        if (Mathf.Abs(this.velocity.x) < Mathf.Abs(this.velocity.y))
+        {
+            if (this.velocity.y > 0)
+            {
+                animator.SetBool("downwards", false);
+                animator.SetBool("left", false);
+                animator.SetBool("right", false);
+                animator.SetBool("upwards", true);
+            }
+            else
+            {
+                animator.SetBool("upwards", false);
+                animator.SetBool("left", false);
+                animator.SetBool("right", false);
+                animator.SetBool("downwards", true);
+            }
+        }
+        else
+        {
+            if (this.velocity.x > 0)
+            {
+                animator.SetBool("upwards", false);
+                animator.SetBool("downwards", false);
+                animator.SetBool("left", false);
+                animator.SetBool("right", true);
+            }
+            else
+            {
+                animator.SetBool("upwards", false);
+                animator.SetBool("downwards", false);
+                animator.SetBool("right", false);
+                animator.SetBool("left", true);
+            }
+        }
+
     }
 }
