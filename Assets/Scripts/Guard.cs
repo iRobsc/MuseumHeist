@@ -186,6 +186,7 @@ public class Guard : MonoBehaviour
             float dx = transform.position.x - target.transform.position.x;
             float dy = transform.position.y - target.transform.position.y;
             float distance = Mathf.Sqrt(dx*dx+dy*dy);
+            if (hit != null) print(hit.collider.name.Split(' ')[0]);
             if (hit != null && hit.collider.name.Split(' ')[0] == "door") {
                 if (distance > hit.distance && (hit.transform.GetChild(0).GetComponent<DoorBlocker>().is_blocking)) {
                     standing_still = true;
