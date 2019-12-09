@@ -18,6 +18,36 @@ EditorBuildSettings:
     path: Assets/Scenes/sthlm_museum.unity
     guid: bfe794b35cc6a804d9ee73a427c339b0
   - enabled: 1
-    path: Assets/Scenes/guard_level.unity
+    path: Assets/Scenes/guard following.unity
     guid: 4663b0c113ff1304ea59d2eb6fcc984a
+  - enabled: 1
+    path: Assets/Scenes/level_6.unity
+    guid: 39cc064494a1d1642bf3bc046075ed6a
+  - enabled: 1
+    path: Assets/Scenes/level_7.unity
+    guid: 9ab9015e2c1782a4b808b7b081294f0e
+  - enabled: 1
+    path: Assets/Scenes/level_5.unity
+    guid: df9c614f06ae7e44f892f3bb336558e9
+  - enabled: 1
+    path: Assets/Scenes/level_4.unity
+    guid: 6aa903261d17a044db09c5e2f59d3eb0
+  - enabled: 1
+    path: Assets/Scenes/level_3.unity
+    guid: b7769bcbf0263ff46bd973f2aad83403
+  - enabled: 1
+    path: Assets/Scenes/level_2.unity
+    guid: 2cc14cfa83451f14090c0591c0be04d6
+  - enabled: 1
+    path: Assets/Scenes/level_1.unity
+    guid: 6adab58e85a44804384c62d275f54bd5
+  - enabled: 1
+    path: Assets/Scenes/level_9.unity
+    guid: 451562f043eb544418704f6cdbfb171a
+  - enabled: 1
+    path: Assets/Scenes/level_8.unity
+    guid: 250fdaad484cd57489c846a618db470f
+  - enabled: 1
+    path: Assets/Scenes/level_10.unity
+    guid: a5cf320aab3caa94185240bc4860df6b
   m_configObjects: {}
