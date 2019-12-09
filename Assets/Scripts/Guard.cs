@@ -154,8 +154,8 @@ public class Guard : MonoBehaviour
             if (distance(this.transform.position, target.transform.position) < 0.1)
             {
                 something_counter++;
-                if(something_counter % 2 == 0) {
-                    something_counter %= 2;
+                if(something_counter % 1 == 0) {
+                    something_counter %= 1;
                     deletePathpoints();
                     calculatePathpoints();
                 }
@@ -296,11 +296,24 @@ public class Guard : MonoBehaviour
     }
 
     void deletePathpoints() {
-        pathfinding.DetachChildren();
-        for (int i = 0; i < pathpoints.Length; i++)
+        int i = 0;
+
+        //Array to hold all child obj
+        GameObject[] allChildren = new GameObject[pathfinding.childCount];
+
+        //Find all child obj and store to that array
+        foreach (Transform child in pathfinding)
         {
-            Destroy(GameObject.Find("pathpoint " + i));
+            allChildren[i] = child.gameObject;
+            i += 1;
         }
+
+        //Now destroy them
+        foreach (GameObject child in allChildren)
+        {
+            DestroyImmediate(child.gameObject);
+        }
+
     }
 
     bool calculatePathpoints() {
