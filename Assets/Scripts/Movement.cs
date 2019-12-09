@@ -153,8 +153,6 @@ public class Movement : MonoBehaviour
     }
 
     void Animate() {
-
-        //animator;
         if (Mathf.Abs(this.velocity.x) < 0.01f && Mathf.Abs(this.velocity.y) < 0.01f)
         {
             animator.SetBool("downwards", false);
@@ -167,6 +165,7 @@ public class Movement : MonoBehaviour
         {
             animator.enabled = true;
         }
+
         if (Mathf.Abs(this.velocity.x) < Mathf.Abs(this.velocity.y))
         {
             if (this.velocity.y > 0)
