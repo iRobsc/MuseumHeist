@@ -186,20 +186,20 @@ public class Guard : MonoBehaviour
             float dx = transform.position.x - target.transform.position.x;
             float dy = transform.position.y - target.transform.position.y;
             float distance = Mathf.Sqrt(dx*dx+dy*dy);
-            if (hit != null && hit.collider.name == "door") {
+            if (hit != null && hit.collider.name.Split(' ')[0] == "door") {
                 if (distance > hit.distance && (hit.transform.GetChild(0).GetComponent<DoorBlocker>().is_blocking)) {
                     standing_still = true;
-                    for (int i = waypointIndex; i < waypoints.Length; i++) {
-                        Vector2 ray1 = direction(transform.position, waypoints[i].transform.position);
+                    for (int i = waypointIndex; i < waypoints.Length + waypointIndex; i++) {
+                        Vector2 ray1 = direction(transform.position, waypoints[i % waypoints.Length].transform.position);
                         RaycastHit2D hit1 = Physics2D.Raycast(transform.position, -ray1, collidables);
-                        float dx1 = transform.position.x - waypoints[i].transform.position.x;
-                        float dy1 = transform.position.y - waypoints[i].transform.position.y;
+                        float dx1 = transform.position.x - waypoints[i % waypoints.Length].transform.position.x;
+                        float dy1 = transform.position.y - waypoints[i % waypoints.Length].transform.position.y;
                         float distance1 = Mathf.Sqrt(dx1*dx1+dy1*dy1);
                         if (hit1 == null){
-                            waypointIndex = i;
+                            waypointIndex = i % waypoints.Length;
                             break;
                         } else if (hit1.distance > distance1) {
-                            waypointIndex = i;
+                            waypointIndex = i % waypoints.Length;
                             break;
                         }
 
