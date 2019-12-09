@@ -1,0 +1,94 @@
+html {
+	scroll-behavior: smooth;
+}
+
+#header {
+	padding-top: 2%;
+	/*padding-bottom: 2%;*/
+	background-color: #0c0c0c;
+	position: -webkit-sticky; /* Safari */
+  	position: sticky;
+  	top: 0;
+  	z-index: 100;
+  	padding-bottom: 2%;
+}
+
+body {
+	background-image: url(wall.jpg)
+}
+
+/*#navbar-a {
+	display: table-cell;
+	vertical-align: bottom;
+}*/
+
+/*body {
+ 	background-image: url("orginal-crop.jpg");
+ 	background-size: cover;
+ 	background-repeat: no-repeat;
+}*/
+
+@font-face {
+	font-family: testFont;
+ 	src: url(AvenirNextLTPro-Regular.otf);
+}
+
+@font-face {
+	font-family: testFonttwo;
+ 	src: url(PressStart2P-Regular.ttf);
+}
+
+.hometext {
+	/*padding-top: 2%;*/
+	/*padding-bottom: 2%;*/
+	color:#c13c3c;
+	font-family: arial black;
+	/*text-align: center;*/
+	font-size: 1.1em;
+	text-decoration: none;
+}
+
+.hometext2 {
+	/*padding-top: 2%;*/
+	/*padding-bottom: 2%;*/
+	color:#cccccc;
+	font-family: Arial black;
+	/*text-align: center;*/
+	font-size: 1em;
+	text-decoration: none;
+}
+
+.headline {
+	padding-top: 2%;
+	/*padding-bottom: 2%;*/
+	color:white;
+	font-family: testFont;
+	/*text-align: center;*/
+}
+
+#topic-row {
+	padding-top: 6%;
+}
+
+#topic-row2 {
+	padding-top: 3%;
+}
+
+#textbox {
+	background-color: rgba(255, 255, 255, 1);
+}
+
+#middle {
+	padding-top: 5%;
+}
+
+#link {
+	text-decoration: none;
+	color:#cccccc;
+}
+
+#link:hover {
+	color:#c13c3c;
+}
+
+
